@@ -19,7 +19,6 @@
   },
   "devDependencies": {
     "babel-jest": "23.6.0",
-    "eslint": "^5.12.1",
     "eslint-config-google": "^0.11.0",
     "jest": "23.6.0",
     "metro-react-native-babel-preset": "0.51.1",

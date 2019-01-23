@@ -10,7 +10,6 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import Login from './Login';
 import Home from './Home';
-import InnerWeb from './InnerWeb';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 const RootStack = createStackNavigator(

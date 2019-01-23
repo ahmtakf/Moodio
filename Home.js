@@ -27,7 +27,8 @@ class Home extends React.Component{
             console.error(error);
         });
 
-        fetch('https://api.spotify.com/v1/recommendations/available-genre-seeds', {
+        fetch('https://api.spotify.com/v1/recommendations?' + 
+        'seed_genres=sad', {
             method: 'GET',
             headers: {
                 'Accept':'application/json',
@@ -36,7 +37,7 @@ class Home extends React.Component{
         })
         .then((response) => response.json())
         .then((responseJson) => {
-            this.setState({genres:responseJson});
+            this.setState({playlist:responseJson});
         })
         .catch((error) =>{
             console.error(error);
@@ -49,7 +50,8 @@ class Home extends React.Component{
         return (
             <View>
                 <Text>Welcome {this.state.display_name} !</Text>
-                <Text>{JSON.stringify(this.state.genres)}</Text>
+                <Text>Sad playlist for you!</Text>
+                <Text>{JSON.stringify(this.state.playlist)}</Text>
             </View>
         ); 
     }

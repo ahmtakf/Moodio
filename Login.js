@@ -1,30 +1,45 @@
 import React, { Component } from 'react'
-import { Text, View, Linking, Button } from 'react-native'
+import { Text, View, StyleSheet, Linking, Button } from 'react-native'
 import InnerWeb from './InnerWeb';
 import { Buffer } from 'buffer'
-import url from 'url';
+
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#F5FCFF',
+    },
+    loginText: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: 'blue',
+        marginTop: '10%'
+    }
+  });
 
 class Login extends React.Component{
 
     constructor(props)
     {
         super(props);
-        this.state = {message:'', error:''};
+        this.state = {loginClick:false, error:''};
         this.handleLogin = this.handleLogin.bind(this);
         this.onNavigationChange = this.onNavigationChange.bind(this);
     }
 
     handleLogin(event) {
 
-        this.setState({message:'hey'});
+        this.setState({loginClick:'true'});
         
         event.preventDefault();
     }
 
     onNavigationChange(webViewState) {
+        //Check if the process is successfully redirected
         if (webViewState.url.substring(0,28) === 'https://example.com/callback'){
             if (webViewState.url.substring(29,34) === 'error'){
-                this.setState({message:'', error:webViewState.url.substring(35)});
+                this.setState({loginClick:false, error:webViewState.url.substring(35)});
             }
             else{
                 const usercode = webViewState.url.substring(34, webViewState.url.length - 17)
@@ -40,11 +55,12 @@ class Login extends React.Component{
                 })
                 .then((response) => response.json())
                 .then((responseJson) => {
-                    this.setState({message:'', error:usercode});
+                    this.setState({loginClick:false, error:''});
                     this.props.navigation.navigate('HomeScreen', { data: { usercode: usercode, response: responseJson} });
 
                 })
                 .catch((error) =>{
+                    this.setState({loginClick:false, error:error});
                     console.error(error);
                 });
             }
@@ -53,13 +69,12 @@ class Login extends React.Component{
 
     render()
     {
-        if (this.state.message === ''){
+        if (!this.state.loginClick){
             return (
-                <View>
-                    <Text>Listen your mood!</Text>
-                    <Text>Login with your Spotify account-></Text>
+                <View style={styles.container}>
+                    <Text style={styles.loginText}>Listen your mood!</Text>
+                    <Text style={styles.loginText}>Login with your Spotify account-></Text>
                     <Button onPress={this.handleLogin} title="Login"></Button>
-                    <Text>message: {this.state.message}</Text>
                     <Text>error: {JSON.stringify(this.state.error)}</Text>
                 </View>
             ); 
@@ -73,7 +88,7 @@ class Login extends React.Component{
             ); 
         }
     }
-
+    
 }
 
 export default Login;
