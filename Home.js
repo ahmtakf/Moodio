@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
-import { Text, View, Button } from 'react-native'
+import { Text, Dimensions, View, Button, StyleSheet } from 'react-native'
+
+const styles = StyleSheet.create({
+    button: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#F5FCFF',
+    }
+    });
 
 class Home extends React.Component{
 
@@ -7,6 +16,9 @@ class Home extends React.Component{
     {
         super(props);
         this.state = {accessToken:this.props.navigation.state.params.data.response.access_token};
+        this.handleLogout = this.handleLogout.bind(this);
+        this.openCameraScreen = this.openCameraScreen.bind(this);
+        this.openAudioScreen = this.openAudioScreen.bind(this);
     }
 
     componentDidMount(){
@@ -45,10 +57,32 @@ class Home extends React.Component{
 
     }
 
+    handleLogout(event) {
+        
+        this.props.navigation.navigate('LoginScreen');
+
+        event.preventDefault();
+    }
+
+    openCameraScreen(event){
+        this.props.navigation.navigate('CameraScreen');
+
+        event.preventDefault();
+    }
+    
+    openAudioScreen(event){
+        this.props.navigation.navigate('AudioScreen');
+
+        event.preventDefault();
+    }
+
     render()
     {
         return (
             <View>
+                <Button style={styles.button} onPress={this.handleLogout} title="Logout"></Button>
+                <Button style={styles.button} onPress={this.openCameraScreen} title="Take Photo"></Button>
+                <Button style={styles.button} onPress={this.openAudioScreen} title="Record Voice"></Button>
                 <Text>Welcome {this.state.display_name} !</Text>
                 <Text>Sad playlist for you!</Text>
                 <Text>{JSON.stringify(this.state.playlist)}</Text>

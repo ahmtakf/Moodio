@@ -10,12 +10,16 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import Login from './Login';
 import Home from './Home';
+import CameraScreen from './CameraScreen';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
+import AudioScreen from './AudioScreen';
 
 const RootStack = createStackNavigator(
   {
     LoginScreen: Login,
-    HomeScreen: Home
+    HomeScreen: Home,
+    CameraScreen: CameraScreen,
+    AudioScreen: AudioScreen
   },
   {
     initialRouteName: 'LoginScreen',

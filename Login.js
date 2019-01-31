@@ -81,7 +81,7 @@ class Login extends React.Component{
         }
         else{
             return (
-                <View>
+                <View style={styles.container}>
                     <InnerWeb parentReference = {this.onNavigationChange}>
                     </InnerWeb>
                 </View>
