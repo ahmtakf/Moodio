@@ -56,7 +56,7 @@ class Login extends React.Component{
                 .then((response) => response.json())
                 .then((responseJson) => {
                     this.setState({loginClick:false, error:''});
-                    this.props.navigation.navigate('HomeScreen', { data: { usercode: usercode, response: responseJson} });
+                    this.props.navigation.navigate('Tabs', { data: { usercode: usercode, response: responseJson} });
 
                 })
                 .catch((error) =>{

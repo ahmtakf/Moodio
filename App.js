@@ -13,13 +13,12 @@ import Home from './Home';
 import CameraScreen from './CameraScreen';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import AudioScreen from './AudioScreen';
+import BottomTab from './BottomTab';
 
 const RootStack = createStackNavigator(
   {
     LoginScreen: Login,
-    HomeScreen: Home,
-    CameraScreen: CameraScreen,
-    AudioScreen: AudioScreen
+    Tabs: BottomTab
   },
   {
     initialRouteName: 'LoginScreen',
