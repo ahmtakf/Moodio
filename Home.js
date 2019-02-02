@@ -23,7 +23,7 @@ class Home extends React.Component{
 
     componentDidMount(){
         this.setState({accessToken:this.props.navigation.state.params.data.response.access_token});
-
+        console.log(this.state.accessToken);
         fetch('https://api.spotify.com/v1/me', {
             method: 'GET',
             headers: {
@@ -49,7 +49,7 @@ class Home extends React.Component{
         })
         .then((response) => response.json())
         .then((responseJson) => {
-            this.setState({playlist:responseJson});
+            this.setState({playlist:responseJson.tracks.map(track => track.name)});
         })
         .catch((error) =>{
             console.error(error);
@@ -83,7 +83,7 @@ class Home extends React.Component{
                 <Button style={styles.button} onPress={this.handleLogout} title="Logout"></Button>
                 <Button style={styles.button} onPress={this.openCameraScreen} title="Take Photo"></Button>
                 <Button style={styles.button} onPress={this.openAudioScreen} title="Record Voice"></Button>
-                <Text>Welcome {this.state.display_name} !</Text>
+                <Text>Welcome {this.state.accessToken} !</Text>
                 <Text>Sad playlist for you!</Text>
                 <Text>{JSON.stringify(this.state.playlist)}</Text>
             </View>
