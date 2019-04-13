@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, Dimensions, View, Button, StyleSheet } from 'react-native'
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import { Icon } from 'react-native-elements'
 import CameraScreen from './CameraScreen';
 import AudioScreen from './AudioScreen';
 import Home from './Home';
@@ -10,7 +11,7 @@ class TabButtonComponent extends React.Component {
       const { name, badgeCount, color, size } = this.props;
       return (
         <View style={{ width: 100, height: 24, margin: 5 }}>
-            <Text style={{
+            <Icon style={{
             // /If you're using react-native < 0.57 overflow outside of the parent
             // will not work on Android, see https://git.io/fhLJ8
             position: 'absolute',
@@ -18,7 +19,7 @@ class TabButtonComponent extends React.Component {
             justifyContent: 'center',
             alignItems: 'center',
             }}
-            name={name} size={size} color={color}>{name}</Text>
+            name={name} type='font-awesome' size={size} color={color}>{name}</Icon>
         </View>
       );
     }
@@ -29,11 +30,11 @@ const getTabBarIcon = (navigation, focused, tintColor) => {
     let IconComponent = TabButtonComponent;
     let iconName;
     if (routeName === 'HomeScreen') {
-        iconName = 'Home';
+        iconName = 'home';
     } else if (routeName === 'CameraScreen') {
-        iconName = 'Camera';
+        iconName = 'camera';
     }else if (routeName === 'AudioScreen'){
-        iconName = 'Audio';
+        iconName = 'microphone';
     }
     
     return <IconComponent name={iconName} size={25} color={tintColor} />;
