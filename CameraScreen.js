@@ -16,7 +16,13 @@ const styles = StyleSheet.create({
         borderRadius: 5,
          color: '#000', 
          padding: 10,
-          margin: 40}
+          margin: 40},
+    circle: {
+        width: (Dimensions.get('window').width-100),
+        height: (Dimensions.get('window').height/2),
+        borderRadius: (Dimensions.get('window').width-100)/2,
+        borderWidth: 1,
+        borderColor: 'black',}
     });
 
 class CameraScreen extends React.Component{
@@ -28,8 +34,6 @@ class CameraScreen extends React.Component{
 
     takePicture() { 
         this.camera.capture().then((data) => {
-            console.log("Camera photo");
-            console.log(data.data);
             GoogleVisionAPI.detectMood(data.data).then((mood)=>{
                 console.log(mood);
                 this.props.navigation.navigate('MoodDetectScreen', { data: { img:data.data, mood: mood} });
@@ -40,7 +44,8 @@ class CameraScreen extends React.Component{
     render()
     {
         return (
-            <Camera ref={cam => { this.camera = cam; }} style={styles.preview} aspect={Camera.constants.Aspect.fill} type='front' captureTarget={Camera.constants.CaptureTarget.memory}> 
+            <Camera ref={cam => { this.camera = cam; }} style={styles.preview} aspect={Camera.constants.Aspect.fill} type='front' captureTarget={Camera.constants.CaptureTarget.memory} fixOrientation ={true} > 
+                <View style={styles.circle} />
                 <Text style={styles.capture} onPress={this.takePicture.bind(this)}> [CAPTURE]
                 </Text>
             </Camera>
