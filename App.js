@@ -12,11 +12,13 @@ import Login from './Login';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import MoodDetect from './MoodDetectScreen';
 import BottomTab from './BottomTab';
+import RecordDetect from './RecordDetectScreen';
 
 const RootStack = createStackNavigator(
   {
     LoginScreen: Login,
     MoodDetectScreen: MoodDetect,
+    RecordDetectScreen: RecordDetect,
     Tabs: BottomTab
   },
   {

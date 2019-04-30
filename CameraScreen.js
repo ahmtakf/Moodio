@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, Dimensions, View, Button, StyleSheet } from 'react-native'
 import Camera from 'react-native-camera';
-import * as GoogleVisionAPI from './GoogleVisionAPI';
+import * as GoogleAPI from './GoogleAPI';
 
 const styles = StyleSheet.create({
     preview: { 
@@ -34,7 +34,7 @@ class CameraScreen extends React.Component{
 
     takePicture() { 
         this.camera.capture().then((data) => {
-            GoogleVisionAPI.detectMood(data.data).then((mood)=>{
+            GoogleAPI.detectMood(data.data).then((mood)=>{
                 console.log(mood);
                 this.props.navigation.navigate('MoodDetectScreen', { data: { img:data.data, mood: mood} });
             });}
