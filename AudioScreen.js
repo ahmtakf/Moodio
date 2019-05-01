@@ -47,8 +47,8 @@ state = {
 
       AudioRecorder.onFinished = (data) => {
 
-        console.log(data.base64.replace(/(\r\n|\n|\r)/gm, " "));
-        const query = data.base64.replace(/(\r\n|\n|\r)/gm, " ");
+        console.log(data.base64.replace(/(\r\n|\n|\r)/gm, ""));
+        const query = data.base64.replace(/(\r\n|\n|\r)/gm, "");
         console.log("Hello");
         console.log(query);
         GoogleAPI.speechToText(query).then((res)=>{
