@@ -1,3 +1,5 @@
+import {Platform} from 'react-native';
+
 const googleVisionAPI = "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCguYvDWzbEjGWCS8GxN9Of7HfVCHcqpU8"
 const googleSpeechAPI = "https://speech.googleapis.com/v1/speech:recognize?key=AIzaSyA9YmBc8vme5V2LCm0aS9UI6aXgVVG-o8w"
 
@@ -26,23 +28,35 @@ export const detectMood = (data) =>
 }).then(res => res.json())
   .then(data => data);
 
-export const speechToText = (data) =>
-  fetch(`${googleSpeechAPI}`, {
-      method: 'POST',
-      headers: {
+export const speechToText = (data) => {
+  let body;
+  if (Platform.OS === 'ios') {
+    body = {
+      "config": {
+        "encoding": "LINEAR16",
+        "languageCode": "en-US",
+        "sampleRateHertz": 16000
+      },
+      "audio": { "content": data }
+    };
+  } else {
+    body = {
+      "config": {
+        "encoding": "AMR_WB",
+        "languageCode": "en-US",
+        "sampleRateHertz": 16000,
+        "audioChannelCount":1
+      },
+      "audio": { "content": data }
+    };
+  }
+  return fetch(`${googleSpeechAPI}`, {
+    method: 'POST',
+    headers: {
       ...headers,
       'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(
-        {
-            "config": {
-                "encoding": "LINEAR16",
-                "sampleRateHertz": 16000,
-                "languageCode": "en-US",
-                "enableWordTimeOffsets": false,
-                "audioChannelCount":1
-            },
-            "audio": { "content": data }
-        })
-}).then(res => res.json())
-  .then(data => data);
+    },
+    body: JSON.stringify(body)
+  }).then(res => res.json())
+    .then(data => data);
+}

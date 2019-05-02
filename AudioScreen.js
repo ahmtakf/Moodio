@@ -8,7 +8,7 @@ import { AppRegistry,
     PermissionsAndroid,} from 'react-native'
 import Sound from 'react-native-sound';
 import {AudioRecorder, AudioUtils} from 'react-native-audio';
-import * as GoogleAPI from './GoogleAPI';
+import {speechToText} from './GoogleAPI';
 
 class AudioScreen extends Component {
 
@@ -18,19 +18,32 @@ state = {
     paused: false,
     stoppedRecording: false,
     finished: false,
-    audioPath: AudioUtils.DocumentDirectoryPath + '/test.aac',
+    audioPath: undefined,
     hasPermission: undefined,
   };
 
-  prepareRecordingPath(audioPath){
-    AudioRecorder.prepareRecordingAtPath(audioPath, {
-      SampleRate: 22050,
-      Channels: 1,
-      AudioQuality: "Low",
-      AudioEncoding: "aac",
-      AudioEncodingBitRate: 32000,
-      IncludeBase64: true
-    });
+  prepareRecordingPath(){
+    let audioPath;
+    if (Platform.OS === 'ios') {
+      audioPath = AudioUtils.DocumentDirectoryPath + '/test.wav';
+      AudioRecorder.prepareRecordingAtPath(audioPath, {
+        SampleRate: 16000,
+        Channels: 1,
+        AudioQuality: "Low",
+        AudioEncoding: "lpcm",
+        IncludeBase64: true
+      });
+    } else {
+      audioPath = AudioUtils.DocumentDirectoryPath + '/test.3gp';
+      AudioRecorder.prepareRecordingAtPath(audioPath, {
+        SampleRate: 16000,
+        Channels: 1,
+        AudioQuality: "Low",
+        AudioEncoding: "amr_wb",
+        IncludeBase64: true
+      });
+    }
+    this.state.audioPath = audioPath;
   }
 
   componentDidMount() {
@@ -39,25 +52,22 @@ state = {
 
       if (!isAuthorised) return;
 
-      this.prepareRecordingPath(this.state.audioPath);
+      this.prepareRecordingPath();
 
       AudioRecorder.onProgress = (data) => {
         this.setState({currentTime: Math.floor(data.currentTime)});
       };
 
       AudioRecorder.onFinished = (data) => {
-        console.log(data.base64.replace(/(\r\n|\n|\r)/gm, ""));
-        const query = data.base64.replace(/(\r\n|\n|\r)/gm, "");
-        console.log("Hello");
-        console.log(query);
-        GoogleAPI.speechToText(query).then((res)=>{
-          this.props.navigation.navigate('RecordDetectScreen', { data: { res:res} });
-        });
-
         // Android callback comes in the form of a promise instead.
         if (Platform.OS === 'ios') {
           this._finishRecording(data.status === "OK", data.audioFileURL, data.audioFileSize);
         }
+
+        const query = data.base64.replace(/(\r\n|\n|\r)/gm, "");
+        speechToText(query).then((res)=>{
+          this.props.navigation.navigate('RecordDetectScreen', { data: { res:res} });
+        });
       };
     });
   }

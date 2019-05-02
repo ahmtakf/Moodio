@@ -12,7 +12,7 @@
     "buffer": "^5.2.1",
     "eslint": "^5.16.0",
     "link": "^0.1.5",
-    "react": "16.8.3",
+    "react": "^16.8.6",
     "react-art": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-native": "^0.59.6",
