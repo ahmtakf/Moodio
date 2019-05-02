@@ -8,6 +8,7 @@ import { AppRegistry,
     PermissionsAndroid,} from 'react-native'
 import Sound from 'react-native-sound';
 import {AudioRecorder, AudioUtils} from 'react-native-audio';
+import * as GoogleAPI from './GoogleAPI';
 
 class AudioScreen extends Component {
 
@@ -27,7 +28,8 @@ state = {
       Channels: 1,
       AudioQuality: "Low",
       AudioEncoding: "aac",
-      AudioEncodingBitRate: 32000
+      AudioEncodingBitRate: 32000,
+      IncludeBase64: true
     });
   }
 
@@ -44,6 +46,14 @@ state = {
       };
 
       AudioRecorder.onFinished = (data) => {
+        console.log(data.base64.replace(/(\r\n|\n|\r)/gm, ""));
+        const query = data.base64.replace(/(\r\n|\n|\r)/gm, "");
+        console.log("Hello");
+        console.log(query);
+        GoogleAPI.speechToText(query).then((res)=>{
+          this.props.navigation.navigate('RecordDetectScreen', { data: { res:res} });
+        });
+
         // Android callback comes in the form of a promise instead.
         if (Platform.OS === 'ios') {
           this._finishRecording(data.status === "OK", data.audioFileURL, data.audioFileSize);
