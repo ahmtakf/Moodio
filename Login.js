@@ -25,13 +25,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         color: '#431540',
-        marginTop: '10%'
+        marginTop: '10%',
+        fontSize: 25
     },
     loginText: {
             justifyContent: 'center',
             alignItems: 'center',
             color: '#431540',
-            marginTop: '25%'
+            marginTop: '25%',
+            fontSize: 15
         },
       button:{
         padding: 5,
