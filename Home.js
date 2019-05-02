@@ -1,12 +1,23 @@
 import React, { Component } from 'react'
-import { Text, Dimensions, View, Button, StyleSheet } from 'react-native'
+import { Image, Text, Dimensions, View, Button, StyleSheet, TouchableOpacity } from 'react-native'
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    },
     button: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#F5FCFF',
+      backgroundColor: '#431540',
+    },
+    text: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: '#431540',
+        marginTop: '10%'
     }
     });
 
@@ -39,7 +50,7 @@ class Home extends React.Component{
             console.error(error);
         });
 
-        fetch('https://api.spotify.com/v1/recommendations?' + 
+        fetch('https://api.spotify.com/v1/recommendations?' +
         'seed_genres=sad', {
             method: 'GET',
             headers: {
@@ -58,7 +69,7 @@ class Home extends React.Component{
     }
 
     handleLogout(event) {
-        
+
         this.props.navigation.navigate('LoginScreen');
 
         event.preventDefault();
@@ -69,7 +80,7 @@ class Home extends React.Component{
 
         event.preventDefault();
     }
-    
+
     openAudioScreen(event){
         this.props.navigation.navigate('AudioScreen');
 
@@ -79,17 +90,39 @@ class Home extends React.Component{
     render()
     {
         return (
-            <View>
-                <Button style={styles.button} onPress={this.handleLogout} title="Logout"></Button>
-                <Button style={styles.button} onPress={this.openCameraScreen} title="Take Photo"></Button>
-                <Button style={styles.button} onPress={this.openAudioScreen} title="Record Voice"></Button>
-                <Text>Welcome {this.state.accessToken} !</Text>
-                <Text>Sad playlist for you!</Text>
-                <Text>{JSON.stringify(this.state.playlist)}</Text>
+            <View style = {{top: 10}}>
+
+                <TouchableOpacity onPress={this.handleLogout} style = {{position:'absolute',
+                        backgroundColor: '#431540', alignItems: 'center', justifyContent: 'center',
+                        height:50, width:50, borderRadius:100, right: 25, top: 25}}>
+                    <Text style = {{color: '#EFEFEF'}}>Logout</Text>
+                </TouchableOpacity>
+
+                <Text style = {styles.text}>Welcome XXXXX!</Text>
+                <Text style = {styles.text}>Here is a playlist just for you!</Text>
+                <Text style = {styles.text}>{JSON.stringify(this.state.playlist)}</Text>
+
             </View>
-        ); 
+        );
     }
 
 }
 
 export default Home;
+
+//<Button style={styles.button} onPress={this.handleLogout} title="Logout"></Button>
+
+                //<Button style={styles.button} onPress={this.openCameraScreen} title="Take Photo"></Button>
+                //<Button style={styles.button} onPress={this.openAudioScreen} title="Record Voice"></Button>
+
+                /*
+                                        <TouchableOpacity onPress = {() => {}>
+                                                        <View style = {{backgroundColor: 'red', alignItems: 'center',
+                                                                        justifyContent: 'center', borderRadius: 15}}
+                                                               >
+                                                            <Text style = {{color: 'white'}}>Button</Text>
+                                                        </View>
+                                                    </TouchableOpacity>
+                */
+
+

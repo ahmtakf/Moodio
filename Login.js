@@ -1,21 +1,46 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Linking, Button } from 'react-native'
+import { Image, Text, View, StyleSheet, Linking, Button } from 'react-native'
 import InnerWeb from './InnerWeb';
 import { Buffer } from 'buffer'
+import logo from './logo.png';
+
+console.log(logo);
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#F5FCFF',
+      backgroundColor: '#EFEFEF',
     },
-    loginText: {
+    logoContainer: {
+          flex: 0,
+          height: undefined,
+          width: undefined,
+          justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: '#EFEFEF',
+        },
+    text: {
         justifyContent: 'center',
         alignItems: 'center',
-        color: 'blue',
+        color: '#431540',
         marginTop: '10%'
-    }
+    },
+    loginText: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            color: '#431540',
+            marginTop: '25%'
+        },
+      button:{
+        padding: 5,
+        height: 50,
+        width: 50,  //The Width must be the same as the height
+        borderRadius:100, //Then Make the Border Radius twice the size of width or Height
+        backgroundColor:'rgb(195, 125, 198)',
+
+      }
   });
 
 class Login extends React.Component{
@@ -72,12 +97,17 @@ class Login extends React.Component{
         if (!this.state.loginClick){
             return (
                 <View style={styles.container}>
-                    <Text style={styles.loginText}>Listen your mood!</Text>
-                    <Text style={styles.loginText}>Login with your Spotify account-></Text>
-                    <Button onPress={this.handleLogin} title="Login"></Button>
-                    <Text>error: {JSON.stringify(this.state.error)}</Text>
+                    <Image style={{ width: 300, height: 70 }}
+                              resizeMode="cover"
+                               source={require('./logo.png')}
+                              //source={{ uri: './logo.png' }}
+                            />
+                    <Text style = {styles.text}>LISTEN TO YOUR MOOD</Text>
+                    <Text style = {styles.loginText}>Login with your Spotify account</Text>
+                    <Text></Text>
+                    <Button onPress={this.handleLogin} title="Login" color="#431540" ></Button>
                 </View>
-            ); 
+            );
         }
         else{
             return (
