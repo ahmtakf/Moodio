@@ -4,6 +4,9 @@ import {Buffer} from 'buffer';
 import InnerWeb from '../InnerWeb';
 import logo from '../../assets/icons/app-name-icon.png';
 
+const redirect_uri = 'https://example.com/callback';
+// should be https://thawing-ravine-99621.herokuapp.com/callback
+
 console.log(logo);
 
 class LoginScreen extends React.Component {
@@ -24,7 +27,7 @@ class LoginScreen extends React.Component {
 
   onNavigationChange(webViewState) {
     //Check if the process is successfully redirected
-    if (webViewState.url.substring(0, 28) === 'https://example.com/callback') {
+    if (webViewState.url.substring(0, 28) === redirect_uri) {
       if (webViewState.url.substring(29, 34) === 'error') {
         this.setState(
             {loginClick: false, error: webViewState.url.substring(35)});
@@ -35,7 +38,7 @@ class LoginScreen extends React.Component {
         fetch(
             'https://accounts.spotify.com/api/token?grant_type=authorization_code&code=' +
             usercode
-            + '&redirect_uri=https://example.com/callback', {
+            + '&redirect_uri=' + redirect_uri, {
               method: 'POST',
               headers: {
                 'Accept': 'application/json',
