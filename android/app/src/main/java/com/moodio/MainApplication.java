@@ -3,7 +3,6 @@ package com.moodio;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.psykar.cookiemanager.CookieManagerPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.rnfs.RNFSPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
@@ -32,7 +31,6 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new CookieManagerPackage(),
             new RNFetchBlobPackage(),
             new RNFSPackage(),
             new RNCWebViewPackage(),
