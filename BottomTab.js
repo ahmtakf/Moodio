@@ -45,7 +45,7 @@ const BottomTab = createAppContainer(
         {
         HomeScreen : Home,
         CameraScreen: CameraScreen,
-        AudioScreen: AudioScreen 
+        AudioScreen: AudioScreen
         },
         {
         defaultNavigationOptions: ({ navigation }) => ({
@@ -53,8 +53,8 @@ const BottomTab = createAppContainer(
             getTabBarIcon(navigation, focused, tintColor),
         }),
         tabBarOptions: {
-            activeTintColor: 'tomato',
-            inactiveTintColor: 'gray',
+            activeTintColor: '#24115A',
+            inactiveTintColor: '#8B709A',
         },
         }
     )
