@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import CookieManager from 'react-native-cookies';
 
 class HomeScreen extends React.Component {
 
@@ -45,6 +46,7 @@ class HomeScreen extends React.Component {
   handleLogout(event) {
 
     this.props.navigation.navigate('LoginScreen');
+    CookieManager.clearAll();
 
     event.preventDefault();
   }

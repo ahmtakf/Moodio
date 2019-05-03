@@ -3,9 +3,9 @@ import {Button, Image, StyleSheet, Text, View} from 'react-native';
 import {Buffer} from 'buffer';
 import InnerWeb from '../InnerWeb';
 import logo from '../../assets/icons/app-name-icon.png';
+import CookieManager from 'react-native-cookies';
 
-const redirect_uri = 'https://example.com/callback';
-// should be https://thawing-ravine-99621.herokuapp.com/callback
+const redirect_uri = 'https://thawing-ravine-99621.herokuapp.com/callback/';
 
 console.log(logo);
 
@@ -18,6 +18,10 @@ class LoginScreen extends React.Component {
     this.onNavigationChange = this.onNavigationChange.bind(this);
   }
 
+  componentDidMount(){
+    CookieManager.clearAll();
+  }
+
   handleLogin(event) {
 
     this.setState({loginClick: 'true'});
@@ -27,13 +31,15 @@ class LoginScreen extends React.Component {
 
   onNavigationChange(webViewState) {
     //Check if the process is successfully redirected
-    if (webViewState.url.substring(0, 28) === redirect_uri) {
-      if (webViewState.url.substring(29, 34) === 'error') {
+    if (webViewState.url.substring(0, redirect_uri.length) === redirect_uri) {
+      if (webViewState.url.substring(redirect_uri.length, redirect_uri.length+5) === 'error') {
         this.setState(
-            {loginClick: false, error: webViewState.url.substring(35)});
+            {loginClick: false, error: webViewState.url.substring(redirect_uri.length+6)});
+        CookieManager.clearAll();
       } else {
-        const usercode = webViewState.url.substring(34,
+        const usercode = webViewState.url.substring(redirect_uri.length+6,
             webViewState.url.length - 17);
+        console.log(usercode);
         //Get tokens for user
         fetch(
             'https://accounts.spotify.com/api/token?grant_type=authorization_code&code=' +
@@ -49,6 +55,7 @@ class LoginScreen extends React.Component {
               },
             }).then((response) => response.json()).then((responseJson) => {
           this.setState({loginClick: false, error: ''});
+          console.log(responseJson);
           this.props.navigation.navigate('Tabs',
               {data: {usercode: usercode, response: responseJson}});
 
