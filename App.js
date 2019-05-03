@@ -1,33 +1,32 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
+ * Moodio
+ * https://github.com/ahmtakf/Moodio
  *
  * @format
  * @flow
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-import Login from './Login';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
-import MoodDetect from './MoodDetectScreen';
-import BottomTab from './BottomTab';
-import RecordDetect from './RecordDetectScreen';
+import {StyleSheet} from 'react-native';
+import LoginScreen from './src/screens/LoginScreen';
+import {createAppContainer, createStackNavigator} from 'react-navigation';
+import MoodDetect from './src/screens/MoodDetectScreen';
+import BottomTab from './src/BottomTab';
+import RecordDetect from './src/screens/RecordDetectScreen';
 
 const RootStack = createStackNavigator(
-  {
-    LoginScreen: Login,
-    MoodDetectScreen: MoodDetect,
-    RecordDetectScreen: RecordDetect,
-    Tabs: BottomTab
-  },
-  {
-    initialRouteName: 'LoginScreen',
-  }
+    {
+      LoginScreen: LoginScreen,
+      MoodDetectScreen: MoodDetect,
+      RecordDetectScreen: RecordDetect,
+      Tabs: BottomTab,
+    },
+    {
+      initialRouteName: 'LoginScreen',
+    },
 );
 
 const AppContainer = createAppContainer(RootStack);
-
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -45,5 +44,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
-  }
+  },
 });
