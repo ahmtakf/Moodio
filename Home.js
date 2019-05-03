@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Image, Text, Dimensions, View, Button, StyleSheet, TouchableOpacity } from 'react-native'
-import * as Progress from 'react-native-progress';
 
 const styles = StyleSheet.create({
     container: {
@@ -102,17 +101,6 @@ class Home extends React.Component{
                 <Text style = {styles.text}>Welcome XXXXX!</Text>
                 <Text style = {styles.text}>Here is a playlist just for you!</Text>
                 <Text style = {styles.text}>{JSON.stringify(this.state.playlist)}</Text>
-
-                <Progress.Circle
-                            style={{alignItems: 'center'}}
-                            size={100}
-                            marginTop = {75}
-                            thickness ={0}
-                            color={'#431540'}
-                            progress={this.state.progress}
-                            indeterminate={true}
-                            direction="counter-clockwise"
-                          />
 
             </View>
         );
