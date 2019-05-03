@@ -19,7 +19,6 @@ class LoginScreen extends React.Component {
   }
 
   componentDidMount(){
-    CookieManager.clearAll();
   }
 
   handleLogin(event) {

@@ -6,7 +6,6 @@ class MoodDetect extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      check: this.props.navigation.state.params.data.mood,
       mood: this.props.navigation.state.params.data.mood,
       img: this.props.navigation.state.params.data.img,
     };
@@ -14,7 +13,6 @@ class MoodDetect extends React.Component {
 
   componentDidMount() {
     this.setState({
-      check: this.props.navigation.state.params.data.mood,
       mood: this.props.navigation.state.params.data.mood,
       img: this.props.navigation.state.params.data.img,
     });
@@ -24,10 +22,10 @@ class MoodDetect extends React.Component {
     return (
         <ScrollView>
           <Image style={{width: 150, height: 150, resizeMode: 'contain'}}
-    source={{
-      uri: 'data:image/png;base64,' + this.state.img,
-    }}/>
-          <Text>Result: {JSON.stringify(this.state.mood)}</Text>
+            source={{
+              uri: this.state.img,
+            }}/>
+          <Text>Result: {JSON.stringify(this.state.mood[0].faceAttributes.emotion)}</Text>
         </ScrollView>
     );
   }

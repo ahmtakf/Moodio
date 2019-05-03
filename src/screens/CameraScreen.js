@@ -2,11 +2,8 @@ import React from 'react';
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import Camera from 'react-native-camera';
 import RNFetchBlob from 'react-native-fetch-blob';
-// import base64 from 'react-native-base64'
-// import RNFS from'react-native-fs'
-// import * as AzureAPI from '../api/AzureAPI'
 
-const azureFaceAPI = 'https://westeurope.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion,hair';
+const azureFaceAPI = 'https://westeurope.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age,gender,smile,emotion,hair';
 
 class CameraScreen extends React.Component {
 
@@ -17,17 +14,7 @@ class CameraScreen extends React.Component {
   takePicture() {
     this.camera.capture().then((data) => {
 
-      console.log(data.data);
-      /* var binary = base64.decode(data.data);
-       console.log("after binary");
-       var byteNumbers = new Array(binary.length);
-       console.log("after byteNumbers");
-       for(var i = 0; i < binary.length; i++) {
-           byteNumbers.push(binary.charCodeAt(i));
-       }
-       console.log("after for");
-       var file = new Blob([new Uint8Array(byteNumbers)], {type: 'image/jpeg'});
-       console.log("after file");*/
+      console.log(data);
 
       RNFetchBlob.fetch('POST', azureFaceAPI, {
         'Content-Type': 'application/octet-stream',
@@ -35,18 +22,13 @@ class CameraScreen extends React.Component {
         // Change BASE64 encoded data to a file path with prefix `RNFetchBlob-file://`.
         // Or simply wrap the file path with RNFetchBlob.wrap().
       }, RNFetchBlob.wrap(data.path)).then((res) => {
-        console.log(res.text());
+        console.log(res.json());
         this.props.navigation.navigate('MoodDetectScreen',
-            {data: {img: data.data, mood: res.text()}});
+            {data: {img: data.path, mood: res.json()}});
       }).catch((err) => {
         // error handling ..
         console.log(err);
       });
-
-      /* AzureAPI.detectMood(data.data).then((mood)=>{
-           console.log(mood);
-           this.props.navigation.navigate('MoodDetectScreen', { data: { img:data.data, mood: mood} });
-       });*/
 
     }).catch(err => console.error(err));
   }
