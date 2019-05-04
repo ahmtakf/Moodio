@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import * as Progress from 'react-native-progress';
+import RNFetchBlob from 'rn-fetch-blob';
 import React from 'react';
 import {
   StyleSheet,
@@ -12,6 +12,8 @@ import {
 } from 'react-native';
 // eslint-disable-next-line import/no-unresolved
 import { RNCamera } from 'react-native-camera';
+
+const azureFaceAPI = 'https://westeurope.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age,gender,smile,emotion,hair';
 
 const flashModeOrder = {
   off: 'on',
@@ -47,15 +49,6 @@ export default class CameraScreen extends React.Component {
     type: 'front',
     whiteBalance: 'auto',
     ratio: '16:9',
-    recordOptions: {
-      mute: false,
-      maxDuration: 5,
-      quality: RNCamera.Constants.VideoQuality['288p'],
-    },
-    canDetectText: false,
-    canDetectBarcode: false,
-    textBlocks: [],
-    barcodes: [],
   };
 
   toggleFacing() {
@@ -122,11 +115,37 @@ export default class CameraScreen extends React.Component {
     });
   }
 
-  takePicture = async function() {
-    if (this.camera) {
-      const data = await this.camera.takePictureAsync();
-      console.warn('takePicture ', data);
-    }
+
+ /* onTouchStartRecording() {
+    this.camera.recordAsync().then((data) => {
+      const videoPath = data.uri;
+      const header = {}; // maybe you need authentication here
+      fetchBlob.fetch('PUT', 'your-url', headers, fetchBlob.wrap(stripFilePathPrefix(payload))).then(() => {});
+    });
+  }*/
+
+
+  takePicture = async function(camera) {
+    const options = { quality: 0.5, base64: true };
+    const data = await this.camera.takePictureAsync(options);
+    //  eslint-disable-next-line
+    /*console.warn('1', data.uri);
+    console.warn('2', data.base64);
+    console.warn('3', RNFetchBlob.wrap(stripFilePathPrefix(data.uri)));
+    console.warn('4', RNFetchBlob.wrap(data.uri));
+    const picPath = data.uri;*/
+
+    RNFetchBlob.fetch('POST', azureFaceAPI, {
+        'Content-Type': 'application/octet-stream',
+        'Ocp-Apim-Subscription-Key': '6163804f762148a3b9f67b09a6b95e8e',
+        // Change BASE64 encoded data to a file path with prefix `RNFetchBlob-file://`.
+        // Or simply wrap the file path with RNFetchBlob.wrap().
+        }, RNFetchBlob.wrap(data.uri)).then((res) => {
+            console.log(res.json());
+            this.props.navigation.navigate('MoodDetectScreen',
+            data: {img: data.path, mood: res.json()}});
+        });
+
   };
 
   toggle = value => () => this.setState(prevState => ({ [value]: !prevState[value] }));
@@ -190,6 +209,7 @@ export default class CameraScreen extends React.Component {
           flex: 1,
           justifyContent: 'space-between',
         }}
+        //captureTarget={RNCamera.constants.CaptureTarget.disk}
         type={this.state.type}
         flashMode={this.state.flash}
         autoFocus={this.state.autoFocus}
@@ -228,18 +248,6 @@ export default class CameraScreen extends React.Component {
         >
         </View>
 
-
-                  <View>
-                    <Progress.Circle
-                      style={{alignItems: 'center'}}
-                      size={400}
-                      thickness ={30}
-                      color={'#431540'}
-                      indeterminate={false}
-                      direction="counter-clockwise"
-                    />
-                  </View>
-
         <View style={{ flex: 1, bottom: 0, justifyContent: 'center' }}>
           <View
             style={{
@@ -267,6 +275,7 @@ export default class CameraScreen extends React.Component {
               onPress={this.takePicture.bind(this)}
             >
               <Text style={styles.flipText}> SNAP </Text>
+
             </TouchableOpacity>
           </View>
         </View>
@@ -351,3 +360,21 @@ const styles = StyleSheet.create({
             >
               <Text style={styles.flipText}> AF : {this.state.autoFocus} </Text>
             </TouchableOpacity>*/
+
+            /*
+            import * as Progress from 'react-native-progress';
+                              <View>
+                                <Progress.Circle
+                                  style={{alignItems: 'center'}}
+                                  size={400}
+                                  thickness ={30}
+                                  color={'#431540'}
+                                  indeterminate={true}
+                                  direction="counter-clockwise"
+                                />
+                              </View>
+            */
+
+            /*
+            <Text style={styles.capture} onPress={this.takePicture.bind(this)}> CAPTURE </Text>
+            */
