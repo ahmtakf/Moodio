@@ -25,11 +25,10 @@ class MoodDetect extends React.Component {
             source={{
               uri: this.state.img,
             }}/>
-          <Text>Result: {JSON.stringify(this.state.mood[0].faceAttributes.emotion)}</Text>
+          <Text>Result: {JSON.stringify(this.state.mood)}</Text>
         </ScrollView>
     );
   }
-
 }
 
 const styles = StyleSheet.create({
