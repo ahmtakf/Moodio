@@ -3,6 +3,7 @@ import RNFetchBlob from 'rn-fetch-blob';
 import React from 'react';
 import {
   StyleSheet,
+  CameraRoll,
   Text,
   View,
   TouchableOpacity,
@@ -122,24 +123,34 @@ export default class CameraScreen extends React.Component {
   }
 
   takePicture = async function(camera) {
-    const options = { base64: true };
+    const options = { quality:0, base64: true };
     const data = await this.camera.takePictureAsync(options);
     //console.warn('click', 'click');
+    const b64 = data.base64;
+    //console.log(data);
 
     //  eslint-disable-next-line
-    /*console.warn('1', data.uri);
-    console.warn('2', data.base64);
-    console.warn('3', RNFetchBlob.wrap(stripFilePathPrefix(data.uri)));
-    console.warn('4', RNFetchBlob.wrap(data.uri));
-    const picPath = data.uri;*/
+
+    //CameraRoll.saveToCameraRoll(data.uri);
+
+    /*console.warn('URI ->', data.uri);
+    console.warn('BASE64 ->', data.base64);
+    console.warn('WRAPPED -> ', RNFetchBlob.wrap(data.uri));
+    console.warn('WIDTH ->', data.width);
+    console.warn('HEIGHT ->', data.height);*/
+    const picPath = data.uri;
+    const pic = data.base64;
+    console.warn('picPath ->', data.uri);
+    console.warn('pic ->', data.base64);
+
 
     RNFetchBlob.fetch('POST', azureFaceAPI, {
         'Content-Type': 'application/octet-stream',
         'Ocp-Apim-Subscription-Key': '6163804f762148a3b9f67b09a6b95e8e',
         // Change BASE64 encoded data to a file path with prefix `RNFetchBlob-file://`.
         // Or simply wrap the file path with RNFetchBlob.wrap().
-        }, RNFetchBlob.wrap(data.uri)).then((res) => {
-            console.warn('AZURE SONUCU --> ',res.json());
+        }, pic).then((res) => {
+            //console.warn('AZURE SONUCU --> ',res.json());
             this.props.navigation.navigate('MoodDetectScreen',
                         {data: {img: data.uri, mood: res.json()}});
         }).catch((err) => {
@@ -223,15 +234,6 @@ export default class CameraScreen extends React.Component {
         focusDepth={this.state.depth}
         permissionDialogTitle={'Permission to use camera'}
         permissionDialogMessage={'We need your permission to use your camera phone'}
-        faceDetectionLandmarks={
-          RNCamera.Constants.FaceDetection.Landmarks
-            ? RNCamera.Constants.FaceDetection.Landmarks.all
-            : undefined
-        }
-        onFacesDetecized={canDetectText ? this.textRecognized : null}
-                            onGoogleVisited={canDetectFaces ? this.facesDetected : null}
-        onTextRecognized={canDetectText ? this.textRecognized : null}
-        onGoogleVisionBarcodesDetected={canDetectBarcode ? this.barcodeRecognized : null}
       >
 
         <View
