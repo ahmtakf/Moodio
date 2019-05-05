@@ -14,7 +14,7 @@ class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    Spotify.sendRequest('v1/recommendations', 'GET', {'seed_genres': 'sad'}, true).then((responseJson) => {
+    Spotify.sendRequest('v1/recommendations', 'GET', {'seed_genres': 'sad'}, false).then((responseJson) => {
       console.log(responseJson);
       this.setState({playlist: responseJson.tracks.map(track => track.name)}); //
     }).catch((error) => {
