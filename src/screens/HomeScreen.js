@@ -1,42 +1,22 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import CookieManager from 'react-native-cookies';
+import Spotify from 'rn-spotify-sdk';
 
 class HomeScreen extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {accessToken: this.props.navigation.state.params.data.response.access_token};
+    this.state = {currentSession: Spotify.getSession()};
     this.handleLogout = this.handleLogout.bind(this);
     this.openCameraScreen = this.openCameraScreen.bind(this);
     this.openAudioScreen = this.openAudioScreen.bind(this);
   }
 
   componentDidMount() {
-    this.setState(
-        {accessToken: this.props.navigation.state.params.data.response.access_token});
-    console.log(this.state.accessToken);
-    fetch('https://api.spotify.com/v1/me', {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + this.state.accessToken,
-      },
-    }).then((response) => response.json()).then((responseJson) => {
-      this.setState(responseJson);
-    }).catch((error) => {
-      console.error(error);
-    });
-
-    fetch('https://api.spotify.com/v1/recommendations?' +
-        'seed_genres=sad', {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ' + this.state.accessToken,
-      },
-    }).then((response) => response.json()).then((responseJson) => {
-      this.setState({playlist: responseJson.tracks.map(track => track.name)});
+    Spotify.sendRequest('v1/recommendations', 'GET', {'seed_genres': 'sad'}, true).then((responseJson) => {
+      console.log(responseJson);
+      this.setState({playlist: responseJson.tracks.map(track => track.name)}); //
     }).catch((error) => {
       console.error(error);
     });

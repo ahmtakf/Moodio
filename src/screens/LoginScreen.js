@@ -1,11 +1,16 @@
 import React from 'react';
-import {Button, Image, StyleSheet, Text, View} from 'react-native';
-import {Buffer} from 'buffer';
-import InnerWeb from '../InnerWeb';
+import {
+  ActivityIndicator,
+  Alert,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableHighlight,
+  View,
+} from 'react-native';
 import logo from '../../assets/icons/app-name-icon.png';
 import CookieManager from 'react-native-cookies';
-
-const redirect_uri = 'https://thawing-ravine-99621.herokuapp.com/callback/';
+import Spotify from 'rn-spotify-sdk';
 
 console.log(logo);
 
@@ -13,61 +18,85 @@ class LoginScreen extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {loginClick: false, error: ''};
-    this.handleLogin = this.handleLogin.bind(this);
-    this.onNavigationChange = this.onNavigationChange.bind(this);
+
+    this.state = {spotifyInitialized: false};
+    this.spotifyLoginButtonWasPressed = this.spotifyLoginButtonWasPressed.bind(
+        this);
   }
 
-  componentDidMount(){
+  goToTabs() {
+    this.props.navigation.navigate('Tabs');
   }
 
-  handleLogin(event) {
-
-    this.setState({loginClick: 'true'});
-
-    event.preventDefault();
-  }
-
-  onNavigationChange(webViewState) {
-    //Check if the process is successfully redirected
-    if (webViewState.url.substring(0, redirect_uri.length) === redirect_uri) {
-      if (webViewState.url.substring(redirect_uri.length, redirect_uri.length+5) === 'error') {
-        this.setState(
-            {loginClick: false, error: webViewState.url.substring(redirect_uri.length+6)});
-        CookieManager.clearAll();
-      } else {
-        const usercode = webViewState.url.substring(redirect_uri.length+6,
-            webViewState.url.length - 17);
-        console.log(usercode);
-        //Get tokens for user
-        fetch(
-            'https://accounts.spotify.com/api/token?grant_type=authorization_code&code=' +
-            usercode
-            + '&redirect_uri=' + redirect_uri, {
-              method: 'POST',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Basic ' + Buffer.from(
-                    'c4ed4e112a58428b9e4bab08f4fefd8c' + ':' +
-                    '7865065897654383bac631a451d42900').toString('base64'),
-              },
-            }).then((response) => response.json()).then((responseJson) => {
-          this.setState({loginClick: false, error: ''});
-          console.log(responseJson);
-          this.props.navigation.navigate('Tabs',
-              {data: {usercode: usercode, response: responseJson}});
-
-        }).catch((error) => {
-          this.setState({loginClick: false, error: error});
-          console.error(error);
-        });
+  async initializeIfNeeded() {
+    // initialize Spotify if it hasn't been initialized yet
+    if (!await Spotify.isInitializedAsync()) {
+      // initialize spotify
+      const spotifyOptions = {
+        'clientID': 'c4ed4e112a58428b9e4bab08f4fefd8c',
+        'sessionUserDefaultsKey': '7865065897654383bac631a451d42900',
+        'redirectURL': 'https://thawing-ravine-99621.herokuapp.com/callback/',
+        'scopes': [
+          'user-read-private',
+          'user-read-email'],
+      };
+      const loggedIn = await Spotify.initialize(spotifyOptions);
+      // update UI state
+      this.setState({
+        spotifyInitialized: true,
+      });
+      // handle initialization
+      if (loggedIn) {
+        this.goToTabs();
+      }
+    } else {
+      // update UI state
+      this.setState({
+        spotifyInitialized: true,
+      });
+      // handle logged in
+      if (await Spotify.isLoggedInAsync()) {
+        this.goToTabs();
       }
     }
   }
 
+  componentDidMount() {
+    this.initializeIfNeeded().catch((error) => {
+      Alert.alert('Error', error.message);
+      Spotify.logout();
+    });
+  }
+
+  spotifyLoginButtonWasPressed() {
+    // log into Spotify
+    Spotify.login().then((loggedIn) => {
+      if (loggedIn) {
+        // logged in
+        this.goToTabs();
+      } else {
+        // cancelled
+      }
+    }).catch((error) => {
+      // error
+      Alert.alert('Error', error.message);
+      CookieManager.clearAll();
+    });
+  }
+
   render() {
-    if (!this.state.loginClick) {
+    if (!this.state.spotifyInitialized) {
+      return (
+
+          <View style={styles.container}>
+            <ActivityIndicator animating={true} style={styles.loadIndicator}>
+            </ActivityIndicator>
+            <Text style={styles.loadMessage}>
+              Loading...
+            </Text>
+          </View>
+      );
+    } else {
       return (
           <View style={styles.container}>
             <Image style={{width: 300, height: 70}}
@@ -79,15 +108,10 @@ class LoginScreen extends React.Component {
             <Text style={styles.loginText}>Login with your Spotify
               account</Text>
             <Text/>
-            <Button onPress={this.handleLogin} title="Login"
-                    color="#431540"/>
-          </View>
-      );
-    } else {
-      return (
-          <View style={styles.container}>
-            <InnerWeb parentReference={this.onNavigationChange}>
-            </InnerWeb>
+            <TouchableHighlight onPress={this.spotifyLoginButtonWasPressed}
+                                style={styles.spotifyLoginButton}>
+              <Text style={styles.spotifyLoginButtonText}>Login</Text>
+            </TouchableHighlight>
           </View>
       );
     }
@@ -124,13 +148,19 @@ const styles = StyleSheet.create({
     marginTop: '25%',
     fontSize: 15,
   },
-  button: {
-    padding: 5,
-    height: 50,
-    width: 50,  //The Width must be the same as the height
-    borderRadius: 100, //Then Make the Border Radius twice the size of width or Height
+  spotifyLoginButton: {
+    justifyContent: 'center',
+    borderRadius: 18,
     backgroundColor: 'rgb(195, 125, 198)',
-
+    overflow: 'hidden',
+    width: 200,
+    height: 40,
+    margin: 20,
+  },
+  spotifyLoginButtonText: {
+    fontSize: 20,
+    textAlign: 'center',
+    color: 'white',
   },
 });
 

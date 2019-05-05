@@ -3,10 +3,11 @@ package com.moodio;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.psykar.cookiemanager.CookieManagerPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
+import com.lufinkey.react.spotify.RNSpotifyPackage;
+import com.lufinkey.react.eventemitter.RNEventEmitterPackage;
+import com.psykar.cookiemanager.CookieManagerPackage;
 import com.rnfs.RNFSPackage;
-import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
@@ -32,10 +33,11 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new CookieManagerPackage(),
             new RNFetchBlobPackage(),
+            new RNSpotifyPackage(),
+            new RNEventEmitterPackage(),
+            new CookieManagerPackage(),
             new RNFSPackage(),
-            new RNCWebViewPackage(),
             new VectorIconsPackage(),
             new RNSoundPackage(),
             new RNGestureHandlerPackage(),

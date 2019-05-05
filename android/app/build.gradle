@@ -122,6 +122,12 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+    packagingOptions {
+        pickFirst 'lib/armeabi-v7a/libgnustl_shared.so'
+        pickFirst 'lib/x86/libgnustl_shared.so'
+        exclude 'lib/arm64-v8a/libgnustl_shared.so'
+        exclude 'lib/x86_64/libgnustl_shared.so'
+    }
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
@@ -138,10 +144,11 @@ android {
 }
 
 dependencies {
+    implementation project(':rn-fetch-blob')
+    implementation project(':rn-spotify-sdk')
+    implementation project(':react-native-events')
     implementation project(':react-native-cookies')
-    implementation project(':react-native-fetch-blob')
     implementation project(':react-native-fs')
-    implementation project(':react-native-webview')
     implementation project(':react-native-vector-icons')
     implementation project(':react-native-sound')
     implementation project(':react-native-gesture-handler')
