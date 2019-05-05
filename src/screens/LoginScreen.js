@@ -38,7 +38,8 @@ class LoginScreen extends React.Component {
         'redirectURL': 'https://thawing-ravine-99621.herokuapp.com/callback/',
         'scopes': [
           'user-read-private',
-          'user-read-email'],
+          'user-read-email',
+          'user-top-read'],
       };
       const loggedIn = await Spotify.initialize(spotifyOptions);
       // update UI state

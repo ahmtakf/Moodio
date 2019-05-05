@@ -28,7 +28,7 @@ class HomeScreen extends React.Component {
 
   componentDidMount() {
     Spotify.getMe().then(result => {
-      this.setState({username: result.display_name});
+      this.setState({username: result.display_name, images:result.images});
     });
     Spotify.sendRequest('v1/recommendations', 'GET', {'seed_genres': 'sad'},
         false).then((responseJson) => {

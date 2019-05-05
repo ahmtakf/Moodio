@@ -54,6 +54,22 @@ export default class CameraScreen extends React.Component {
     super(props);
   }
 
+  //Burayı telefondan uygulamaya giremediğim için yazdım test data olarak. Emülatorde de foto çekmeden test ettim.
+ /* componentDidMount(){
+    this.props.navigation.navigate('MoodDetectScreen',
+    {data: {img: 'https://emgroupuk.com/wp-content/uploads/2018/06/profile-icon-9.png',
+     mood: [{FaceAttributes:{emotion: {
+      anger: 0,
+      contempt: 0,
+      disgust: 0,
+      fear: 0,
+      happiness: 0.999,
+      neutral: 0.001,
+      sadness: 0,
+      surprise: 0
+    }}}]}});
+  }*/
+
   toggleFacing() {
     this.setState({
       type: this.state.type === 'back' ? 'front' : 'back',
