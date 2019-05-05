@@ -24,6 +24,9 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
+		1AF42720227E5D8400FC6F4F /* SpotifyAudioPlayback.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AF4271E227E5D8400FC6F4F /* SpotifyAudioPlayback.framework */; };
+		1AF42905227E918100FC6F4F /* SpotifyMetadata.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AF4271D227E5D8400FC6F4F /* SpotifyMetadata.framework */; };
+		1AF42906227E91FD00FC6F4F /* SpotifyAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AF4287B227E6D2F00FC6F4F /* SpotifyAuthentication.framework */; };
 		1D6A9174C8E04BFAB9C90D62 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F997369ECE4165887EA2ED /* libRNFS.a */; };
 		251410369903498E86717DBD /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BB45AB0CD5E64936BB6E41C3 /* Octicons.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -41,6 +44,7 @@
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2E71E8A5467E4035A839D5BF /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C137D59C4247D6BCCA5D62 /* libRNVectorIcons.a */; };
 		320AFAB4841B4B559F209376 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC12BE52E3BE441997F25E72 /* SimpleLineIcons.ttf */; };
+		4027BBADAC3E489B919FE48E /* libRNSpotify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C11C68CF654D71B291AE71 /* libRNSpotify.a */; };
 		5696E3AB50CC4A78B6A3CC5F /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 908E2E0829AC4B0E926A4FFE /* FontAwesome5_Regular.ttf */; };
 		59855865D3D643A0A12AFD67 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6C9133DF55345EB8A8BEA23 /* MaterialCommunityIcons.ttf */; };
 		6BE8699A23EA4153990FC7C0 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E58DDA1E2F4F41E3B8CB4349 /* Zocial.ttf */; };
@@ -52,19 +56,18 @@
 		AD25A1A544234A4381FA7859 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B2AB7491FEC42F9A8F65731 /* Ionicons.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B21844A46224452FB02CBF53 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 398FD0FD83084ADCB8DDEDE0 /* Entypo.ttf */; };
-		B9A01D7C3AC94DABACB7AB76 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC118DEE6CDA4D918C17A901 /* libRNFetchBlob.a */; };
+		B240BC85C0A14B8E885F179A /* libRNEventEmitter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 944DBE9ED7294862A88978B1 /* libRNEventEmitter.a */; };
 		C000368A102F444CA2A81A27 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34E529FB1E574B128B7CBEE4 /* Foundation.ttf */; };
 		C3C6C910704B4865B8750FC1 /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ABD2DAE77E146F29238DC3F /* libRNGestureHandler-tvOS.a */; };
 		C7823BD20FA149619BC7E327 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33C4FE658CEE4701A28442A3 /* EvilIcons.ttf */; };
 		D54E4CC6D7E54A23B6A26E64 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFD1BE1956584FFCB90AF3B0 /* AntDesign.ttf */; };
-		DE59A36B3C81471A9BA65AF9 /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40EB2FE6C95746A59B30E025 /* libRNCWebView.a */; };
+		DF289A0CB13644B893CA919A /* libRNCookieManagerIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A58C320638B84758910D1B56 /* libRNCookieManagerIOS.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		F0EB42F9089444A790FE42AC /* libRNCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EC983610D4E4D69A1CB1648 /* libRNCamera.a */; };
 		F41D5061FD4A4BCB8435C78F /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E781DBEB8C4F4C108F78EB49 /* FontAwesome.ttf */; };
 		F864DF74719C4156ACEFA739 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF6BA3B86826462090539382 /* libRNGestureHandler.a */; };
 		FE8DAD1BDAD240EC903E6ED3 /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F558724C104D4D728C7E99A6 /* libRNVectorIcons-tvOS.a */; };
-		DF289A0CB13644B893CA919A /* libRNCookieManagerIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A58C320638B84758910D1B56 /* libRNCookieManagerIOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -173,13 +176,6 @@
 			remoteGlobalIDString = 4107012F1ACB723B00C6AA39;
 			remoteInfo = RNCamera;
 		};
-		1A6CE3F522627ECA00A561C6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B253EED900FD499D8672719B /* RNCWebView.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 134814201AA4EA6300B7C361;
-			remoteInfo = RNCWebView;
-		};
 		1A6CE3F922627ECA00A561C6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D721148B49C64F909AF6161A /* RNGestureHandler.xcodeproj */;
@@ -229,12 +225,26 @@
 			remoteGlobalIDString = 6456441F1EB8DA9100672408;
 			remoteInfo = "RNFS-tvOS";
 		};
-		1AA30C0F227B53B0005EE58E /* PBXContainerItemProxy */ = {
+		1AF426B0227E5AE200FC6F4F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = DB36F912CB0847A59871DB4B /* RNFetchBlob.xcodeproj */;
+			containerPortal = AF9E4CB7C2694F27B5E6F1B6 /* RNCookieManagerIOS.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = A15C300E1CD25C330074CB35;
-			remoteInfo = RNFetchBlob;
+			remoteGlobalIDString = 1BD725DA1CF77A8B005DBD79;
+			remoteInfo = RNCookieManagerIOS;
+		};
+		1AF4270C227E5C7400FC6F4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9C18638F268645A5A4199BDC /* RNEventEmitter.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNEventEmitter;
+		};
+		1AF42715227E5C7400FC6F4F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 66AB31ED7DDE41A8B24C8778 /* RNSpotify.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNSpotify;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -440,6 +450,9 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Moodio/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Moodio/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		1AF4271D227E5D8400FC6F4F /* SpotifyMetadata.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyMetadata.framework; path = "../node_modules/rn-spotify-sdk/ios/external/SpotifySDK/SpotifyMetadata.framework"; sourceTree = "<group>"; };
+		1AF4271E227E5D8400FC6F4F /* SpotifyAudioPlayback.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyAudioPlayback.framework; path = "../node_modules/rn-spotify-sdk/ios/external/SpotifySDK/SpotifyAudioPlayback.framework"; sourceTree = "<group>"; };
+		1AF4287B227E6D2F00FC6F4F /* SpotifyAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyAuthentication.framework; path = "../node_modules/rn-spotify-sdk/ios/external/SpotifySDK/SpotifyAuthentication.framework"; sourceTree = "<group>"; };
 		27ECED70C0054EE09ACD9F72 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Moodio-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Moodio-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Moodio-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Moodio-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -448,22 +461,26 @@
 		33C4FE658CEE4701A28442A3 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		34E529FB1E574B128B7CBEE4 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		398FD0FD83084ADCB8DDEDE0 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
-		40EB2FE6C95746A59B30E025 /* libRNCWebView.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCWebView.a; sourceTree = "<group>"; };
 		4BEBE5F073964CA4A461C774 /* RNAudio.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAudio.xcodeproj; path = "../node_modules/react-native-audio/ios/RNAudio.xcodeproj"; sourceTree = "<group>"; };
 		5416708EFF634217A0DAC4C5 /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6341B095B86347DD87D22200 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		66AB31ED7DDE41A8B24C8778 /* RNSpotify.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSpotify.xcodeproj; path = "../node_modules/rn-spotify-sdk/ios/RNSpotify.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		8E0A27A761CF4F7AB6B8765F /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		908E2E0829AC4B0E926A4FFE /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		944DBE9ED7294862A88978B1 /* libRNEventEmitter.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNEventEmitter.a; sourceTree = "<group>"; };
 		9ABD2DAE77E146F29238DC3F /* libRNGestureHandler-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNGestureHandler-tvOS.a"; sourceTree = "<group>"; };
 		9B2AB7491FEC42F9A8F65731 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
+		9C18638F268645A5A4199BDC /* RNEventEmitter.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNEventEmitter.xcodeproj; path = "../node_modules/react-native-events/ios/RNEventEmitter.xcodeproj"; sourceTree = "<group>"; };
+		A58C320638B84758910D1B56 /* libRNCookieManagerIOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCookieManagerIOS.a; sourceTree = "<group>"; };
+		A9C11C68CF654D71B291AE71 /* libRNSpotify.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSpotify.a; sourceTree = "<group>"; };
 		AC12BE52E3BE441997F25E72 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		AC3819C3D47D4259836E7134 /* libRNAudio.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAudio.a; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		AF9E4CB7C2694F27B5E6F1B6 /* RNCookieManagerIOS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCookieManagerIOS.xcodeproj; path = "../node_modules/react-native-cookies/ios/RNCookieManagerIOS.xcodeproj"; sourceTree = "<group>"; };
 		B0CE681D8C0B43A4AFDC703E /* RNSound.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
-		B253EED900FD499D8672719B /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNCWebView.xcodeproj; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; };
 		B6C9133DF55345EB8A8BEA23 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		BB45AB0CD5E64936BB6E41C3 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		BFD1BE1956584FFCB90AF3B0 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
@@ -474,16 +491,12 @@
 		CF6BA3B86826462090539382 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
 		D718BE23BF354178959555B3 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		D721148B49C64F909AF6161A /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
-		DB36F912CB0847A59871DB4B /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		E58DDA1E2F4F41E3B8CB4349 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		E781DBEB8C4F4C108F78EB49 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
-		EC118DEE6CDA4D918C17A901 /* libRNFetchBlob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFetchBlob.a; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F1C6D6DF061741F796F24685 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		F558724C104D4D728C7E99A6 /* libRNVectorIcons-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNVectorIcons-tvOS.a"; sourceTree = "<group>"; };
-		AF9E4CB7C2694F27B5E6F1B6 /* RNCookieManagerIOS.xcodeproj */ = {isa = PBXFileReference; name = "RNCookieManagerIOS.xcodeproj"; path = "../node_modules/react-native-cookies/ios/RNCookieManagerIOS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		A58C320638B84758910D1B56 /* libRNCookieManagerIOS.a */ = {isa = PBXFileReference; name = "libRNCookieManagerIOS.a"; path = "libRNCookieManagerIOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -499,6 +512,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AF42906227E91FD00FC6F4F /* SpotifyAuthentication.framework in Frameworks */,
+				1AF42905227E918100FC6F4F /* SpotifyMetadata.framework in Frameworks */,
+				1AF42720227E5D8400FC6F4F /* SpotifyAudioPlayback.framework in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
@@ -517,10 +533,10 @@
 				F864DF74719C4156ACEFA739 /* libRNGestureHandler.a in Frameworks */,
 				9CC09B0C08374C38AC59D8F5 /* libRNSound.a in Frameworks */,
 				2E71E8A5467E4035A839D5BF /* libRNVectorIcons.a in Frameworks */,
-				DE59A36B3C81471A9BA65AF9 /* libRNCWebView.a in Frameworks */,
 				1D6A9174C8E04BFAB9C90D62 /* libRNFS.a in Frameworks */,
-				B9A01D7C3AC94DABACB7AB76 /* libRNFetchBlob.a in Frameworks */,
 				DF289A0CB13644B893CA919A /* libRNCookieManagerIOS.a in Frameworks */,
+				B240BC85C0A14B8E885F179A /* libRNEventEmitter.a in Frameworks */,
+				4027BBADAC3E489B919FE48E /* libRNSpotify.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,6 +720,9 @@
 				F558724C104D4D728C7E99A6 /* libRNVectorIcons-tvOS.a */,
 				C9F997369ECE4165887EA2ED /* libRNFS.a */,
 				EC118DEE6CDA4D918C17A901 /* libRNFetchBlob.a */,
+				A58C320638B84758910D1B56 /* libRNCookieManagerIOS.a */,
+				944DBE9ED7294862A88978B1 /* libRNEventEmitter.a */,
+				A9C11C68CF654D71B291AE71 /* libRNSpotify.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -742,14 +761,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1A6CE3EA22627EC900A561C6 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				1A6CE3F622627ECA00A561C6 /* libRNCWebView.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		1A6CE3EC22627ECA00A561C6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -767,10 +778,26 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1AA30C0C227B53B0005EE58E /* Products */ = {
+		1AF426AD227E5AE200FC6F4F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1AA30C10227B53B0005EE58E /* libRNFetchBlob.a */,
+				1AF426B1227E5AE200FC6F4F /* libRNCookieManagerIOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1AF426DE227E5C7400FC6F4F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1AF4270D227E5C7400FC6F4F /* libRNEventEmitter.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1AF426E0227E5C7400FC6F4F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1AF42716227E5C7400FC6F4F /* libRNSpotify.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -778,6 +805,9 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1AF4287B227E6D2F00FC6F4F /* SpotifyAuthentication.framework */,
+				1AF4271E227E5D8400FC6F4F /* SpotifyAudioPlayback.framework */,
+				1AF4271D227E5D8400FC6F4F /* SpotifyMetadata.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
@@ -823,10 +853,10 @@
 				D721148B49C64F909AF6161A /* RNGestureHandler.xcodeproj */,
 				B0CE681D8C0B43A4AFDC703E /* RNSound.xcodeproj */,
 				27ECED70C0054EE09ACD9F72 /* RNVectorIcons.xcodeproj */,
-				B253EED900FD499D8672719B /* RNCWebView.xcodeproj */,
 				5416708EFF634217A0DAC4C5 /* RNFS.xcodeproj */,
-				DB36F912CB0847A59871DB4B /* RNFetchBlob.xcodeproj */,
 				AF9E4CB7C2694F27B5E6F1B6 /* RNCookieManagerIOS.xcodeproj */,
+				9C18638F268645A5A4199BDC /* RNEventEmitter.xcodeproj */,
+				66AB31ED7DDE41A8B24C8778 /* RNSpotify.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1051,12 +1081,12 @@
 					ProjectRef = C5CF4C990399424E91340ECA /* RNCamera.xcodeproj */;
 				},
 				{
-					ProductGroup = 1A6CE3EA22627EC900A561C6 /* Products */;
-					ProjectRef = B253EED900FD499D8672719B /* RNCWebView.xcodeproj */;
+					ProductGroup = 1AF426AD227E5AE200FC6F4F /* Products */;
+					ProjectRef = AF9E4CB7C2694F27B5E6F1B6 /* RNCookieManagerIOS.xcodeproj */;
 				},
 				{
-					ProductGroup = 1AA30C0C227B53B0005EE58E /* Products */;
-					ProjectRef = DB36F912CB0847A59871DB4B /* RNFetchBlob.xcodeproj */;
+					ProductGroup = 1AF426DE227E5C7400FC6F4F /* Products */;
+					ProjectRef = 9C18638F268645A5A4199BDC /* RNEventEmitter.xcodeproj */;
 				},
 				{
 					ProductGroup = 1AA30C04227B53B0005EE58E /* Products */;
@@ -1069,6 +1099,10 @@
 				{
 					ProductGroup = 1A6CE3E622627EC900A561C6 /* Products */;
 					ProjectRef = B0CE681D8C0B43A4AFDC703E /* RNSound.xcodeproj */;
+				},
+				{
+					ProductGroup = 1AF426E0227E5C7400FC6F4F /* Products */;
+					ProjectRef = 66AB31ED7DDE41A8B24C8778 /* RNSpotify.xcodeproj */;
 				},
 				{
 					ProductGroup = 1A6CE3E822627EC900A561C6 /* Products */;
@@ -1184,13 +1218,6 @@
 			remoteRef = 1A6CE3F222627ECA00A561C6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		1A6CE3F622627ECA00A561C6 /* libRNCWebView.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNCWebView.a;
-			remoteRef = 1A6CE3F522627ECA00A561C6 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		1A6CE3FA22627ECA00A561C6 /* libRNGestureHandler.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1240,11 +1267,25 @@
 			remoteRef = 1AA30C0A227B53B0005EE58E /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		1AA30C10227B53B0005EE58E /* libRNFetchBlob.a */ = {
+		1AF426B1227E5AE200FC6F4F /* libRNCookieManagerIOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libRNFetchBlob.a;
-			remoteRef = 1AA30C0F227B53B0005EE58E /* PBXContainerItemProxy */;
+			path = libRNCookieManagerIOS.a;
+			remoteRef = 1AF426B0227E5AE200FC6F4F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1AF4270D227E5C7400FC6F4F /* libRNEventEmitter.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNEventEmitter.a;
+			remoteRef = 1AF4270C227E5C7400FC6F4F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1AF42716227E5C7400FC6F4F /* libRNSpotify.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNSpotify.a;
+			remoteRef = 1AF42715227E5C7400FC6F4F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		2D16E6721FA4F8DC00B85C8A /* libRCTBlob-tvOS.a */ = {
@@ -1583,27 +1624,17 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 					"$(SRCROOT)..\node_modules\neact-native-fs/**",
 					"$(SRCROOT)..\node_modules\neact-native-fetch-blobios/**",
-					"$(SRCROOT)\..\node_modules\react-native-cookies\ios\RNCookieManagerIOS",
+					"$(SRCROOT)..\node_modules\neact-native-cookiesiosRNCookieManagerIOS",
+					"$(SRCROOT)/../node_modules/react-native-events/ios",
+					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/**",
 				);
 				INFOPLIST_FILE = MoodioTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1628,27 +1659,17 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 					"$(SRCROOT)..\node_modules\neact-native-fs/**",
 					"$(SRCROOT)..\node_modules\neact-native-fetch-blobios/**",
-					"$(SRCROOT)\..\node_modules\react-native-cookies\ios\RNCookieManagerIOS",
+					"$(SRCROOT)..\node_modules\neact-native-cookiesiosRNCookieManagerIOS",
+					"$(SRCROOT)/../node_modules/react-native-events/ios",
+					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/**",
 				);
 				INFOPLIST_FILE = MoodioTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1667,6 +1688,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = F996975LE3;
+				FRAMEWORK_SEARCH_PATHS = "../node_modules/rn-spotify-sdk/ios/external/SpotifySDK";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-audio/ios",
@@ -1674,10 +1696,18 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-webview/ios",
-					"$(SRCROOT)..\node_modules\neact-native-fs/**",
-					"$(SRCROOT)..\node_modules\neact-native-fetch-blobios/**",
-					"$(SRCROOT)\..\node_modules\react-native-cookies\ios\RNCookieManagerIOS",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-fs/**",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-fetch-blobios/**",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-cookiesiosRNCookieManagerIOS",
+					"$(SRCROOT)/../node_modules/react-native-events/ios",
+					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/**",
+					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/external/SpotifySDK",
 				);
 				INFOPLIST_FILE = Moodio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1698,6 +1728,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F996975LE3;
+				FRAMEWORK_SEARCH_PATHS = "../node_modules/rn-spotify-sdk/ios/external/SpotifySDK";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-audio/ios",
@@ -1705,10 +1736,18 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-webview/ios",
-					"$(SRCROOT)..\node_modules\neact-native-fs/**",
-					"$(SRCROOT)..\node_modules\neact-native-fetch-blobios/**",
-					"$(SRCROOT)\..\node_modules\react-native-cookies\ios\RNCookieManagerIOS",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-fs/**",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-fetch-blobios/**",
+					"$(SRCROOT)..",
+					ode_modules,
+					"eact-native-cookiesiosRNCookieManagerIOS",
+					"$(SRCROOT)/../node_modules/react-native-events/ios",
+					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/**",
+					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/external/SpotifySDK",
 				);
 				INFOPLIST_FILE = Moodio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1743,26 +1782,16 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 					"$(SRCROOT)..\node_modules\neact-native-fs/**",
 					"$(SRCROOT)..\node_modules\neact-native-fetch-blobios/**",
-					"$(SRCROOT)\..\node_modules\react-native-cookies\ios\RNCookieManagerIOS",
+					"$(SRCROOT)..\node_modules\neact-native-cookiesiosRNCookieManagerIOS",
+					"$(SRCROOT)/../node_modules/react-native-events/ios",
+					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/**",
 				);
 				INFOPLIST_FILE = "Moodio-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1796,26 +1825,16 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 					"$(SRCROOT)..\node_modules\neact-native-fs/**",
 					"$(SRCROOT)..\node_modules\neact-native-fetch-blobios/**",
-					"$(SRCROOT)\..\node_modules\react-native-cookies\ios\RNCookieManagerIOS",
+					"$(SRCROOT)..\node_modules\neact-native-cookiesiosRNCookieManagerIOS",
+					"$(SRCROOT)/../node_modules/react-native-events/ios",
+					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/**",
 				);
 				INFOPLIST_FILE = "Moodio-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1848,26 +1867,16 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 					"$(SRCROOT)..\node_modules\neact-native-fs/**",
 					"$(SRCROOT)..\node_modules\neact-native-fetch-blobios/**",
-					"$(SRCROOT)\..\node_modules\react-native-cookies\ios\RNCookieManagerIOS",
+					"$(SRCROOT)..\node_modules\neact-native-cookiesiosRNCookieManagerIOS",
+					"$(SRCROOT)/../node_modules/react-native-events/ios",
+					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/**",
 				);
 				INFOPLIST_FILE = "Moodio-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1900,26 +1909,16 @@
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
-					"$(SRCROOT)/../node_modules/react-native-webview/ios",
 					"$(SRCROOT)..\node_modules\neact-native-fs/**",
 					"$(SRCROOT)..\node_modules\neact-native-fetch-blobios/**",
-					"$(SRCROOT)\..\node_modules\react-native-cookies\ios\RNCookieManagerIOS",
+					"$(SRCROOT)..\node_modules\neact-native-cookiesiosRNCookieManagerIOS",
+					"$(SRCROOT)/../node_modules/react-native-events/ios",
+					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/**",
 				);
 				INFOPLIST_FILE = "Moodio-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

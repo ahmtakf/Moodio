@@ -2,16 +2,14 @@
 import RNFetchBlob from 'rn-fetch-blob';
 import React from 'react';
 import {
+  Dimensions,
   StyleSheet,
   Text,
-  View,
   TouchableOpacity,
-  Slider,
-  TouchableWithoutFeedback,
-  Dimensions,
+  View,
 } from 'react-native';
 // eslint-disable-next-line import/no-unresolved
-import { RNCamera } from 'react-native-camera';
+import {RNCamera} from 'react-native-camera';
 
 const azureFaceAPI = 'https://westeurope.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age,gender,smile,emotion,hair';
 
@@ -35,17 +33,12 @@ const landmarkSize = 2;
 
 export default class CameraScreen extends React.Component {
 
-  constructor(props) {
-      super(props);
-  }
-
-
   state = {
     flash: 'off',
     zoom: 0,
     autoFocus: 'on',
     autoFocusPoint: {
-      normalized: { x: 0.5, y: 0.5 }, // normalized values required for autoFocusPointOfInterest
+      normalized: {x: 0.5, y: 0.5}, // normalized values required for autoFocusPointOfInterest
       drawRectPosition: {
         x: Dimensions.get('window').width * 0.5 - 32,
         y: Dimensions.get('window').height * 0.5 - 32,
@@ -56,6 +49,10 @@ export default class CameraScreen extends React.Component {
     whiteBalance: 'auto',
     ratio: '16:9',
   };
+
+  constructor(props) {
+    super(props);
+  }
 
   toggleFacing() {
     this.setState({
@@ -82,7 +79,7 @@ export default class CameraScreen extends React.Component {
   }
 
   touchToFocus(event) {
-    const { pageX, pageY } = event.nativeEvent;
+    const {pageX, pageY} = event.nativeEvent;
     const screenWidth = Dimensions.get('window').width;
     const screenHeight = Dimensions.get('window').height;
     const isPortrait = screenHeight > screenWidth;
@@ -97,8 +94,8 @@ export default class CameraScreen extends React.Component {
 
     this.setState({
       autoFocusPoint: {
-        normalized: { x, y },
-        drawRectPosition: { x: pageX, y: pageY },
+        normalized: {x, y},
+        drawRectPosition: {x: pageX, y: pageY},
       },
     });
   }
@@ -122,7 +119,7 @@ export default class CameraScreen extends React.Component {
   }
 
   takePicture = async function(camera) {
-    const options = { base64: true };
+    const options = {base64: true};
     const data = await this.camera.takePictureAsync(options);
     //console.warn('click', 'click');
 
@@ -134,160 +131,176 @@ export default class CameraScreen extends React.Component {
     const picPath = data.uri;*/
 
     RNFetchBlob.fetch('POST', azureFaceAPI, {
-        'Content-Type': 'application/octet-stream',
-        'Ocp-Apim-Subscription-Key': '6163804f762148a3b9f67b09a6b95e8e',
-        // Change BASE64 encoded data to a file path with prefix `RNFetchBlob-file://`.
-        // Or simply wrap the file path with RNFetchBlob.wrap().
-        }, RNFetchBlob.wrap(data.uri)).then((res) => {
-            console.warn('AZURE SONUCU --> ',res.json());
-            this.props.navigation.navigate('MoodDetectScreen',
-                        {data: {img: data.uri, mood: res.json()}});
-        }).catch((err) => {
-            // error handling ..
-            console.log(err);
-        });
+      'Content-Type': 'application/octet-stream',
+      'Ocp-Apim-Subscription-Key': '6163804f762148a3b9f67b09a6b95e8e',
+      // Change BASE64 encoded data to a file path with prefix `RNFetchBlob-file://`.
+      // Or simply wrap the file path with RNFetchBlob.wrap().
+    }, RNFetchBlob.wrap(data.uri)).then((res) => {
+      console.warn('AZURE SONUCU --> ', res.json());
+      this.props.navigation.navigate('MoodDetectScreen',
+          {data: {img: data.uri, mood: res.json()}});
+    }).catch((err) => {
+      // error handling ..
+      console.log(err);
+    });
 
-            //this.props.navigation.navigate('MoodDetectScreen', data: {img: data.uri, mood: res.json()}});
-
+    //this.props.navigation.navigate('MoodDetectScreen', data: {img: data.uri, mood: res.json()}});
 
   };
 
-  toggle = value => () => this.setState(prevState => ({ [value]: !prevState[value] }));
+  toggle = value => () => this.setState(
+      prevState => ({[value]: !prevState[value]}));
 
-  renderTextBlock = ({ bounds, value }) => (
-    <React.Fragment key={value + bounds.origin.x}>
-      <Text style={[styles.textBlock, { left: bounds.origin.x, top: bounds.origin.y }]}>
-        {value}
-      </Text>
-      <View
-        style={[
-          styles.text,
-          {
-            ...bounds.size,
-            left: bounds.origin.x,
-            top: bounds.origin.y,
-          },
-        ]}
-      />
-    </React.Fragment>
+  renderTextBlock = ({bounds, value}) => (
+      <React.Fragment key={value + bounds.origin.x}>
+        <Text style={[
+          styles.textBlock,
+          {left: bounds.origin.x, top: bounds.origin.y}]}>
+          {value}
+        </Text>
+        <View
+            style={[
+              styles.text,
+              {
+                ...bounds.size,
+                left: bounds.origin.x,
+                top: bounds.origin.y,
+              },
+            ]}
+        />
+      </React.Fragment>
   );
 
   textRecognized = object => {
-    const { textBlocks } = object;
-    this.setState({ textBlocks });
+    const {textBlocks} = object;
+    this.setState({textBlocks});
   };
 
-  barcodeRecognized = ({ barcodes }) => this.setState({ barcodes });
+  barcodeRecognized = ({barcodes}) => this.setState({barcodes});
 
-  renderBarcode = ({ bounds, data, type }) => (
-    <React.Fragment key={data + bounds.origin.x}>
-      <View
-        style={[
-          styles.text,
-          {
-            ...bounds.size,
-            left: bounds.origin.x,
-            top: bounds.origin.y,
-          },
-        ]}
-      >
-        <Text style={[styles.textBlock]}>{`${data} ${type}`}</Text>
-      </View>
-    </React.Fragment>
+  renderBarcode = ({bounds, data, type}) => (
+      <React.Fragment key={data + bounds.origin.x}>
+        <View
+            style={[
+              styles.text,
+              {
+                ...bounds.size,
+                left: bounds.origin.x,
+                top: bounds.origin.y,
+              },
+            ]}
+        >
+          <Text style={[styles.textBlock]}>{`${data} ${type}`}</Text>
+        </View>
+      </React.Fragment>
   );
 
   renderCamera() {
-    const { canDetectFaces, canDetectText, canDetectBarcode } = this.state;
+    const {canDetectFaces, canDetectText, canDetectBarcode} = this.state;
 
     const drawFocusRingPosition = {
       top: this.state.autoFocusPoint.drawRectPosition.y - 32,
       left: this.state.autoFocusPoint.drawRectPosition.x - 32,
     };
     return (
-      <RNCamera
-        ref={ref => {
-          this.camera = ref;
-        }}
-        style={{
-          flex: 1,
-          justifyContent: 'space-between',
-        }}
-        onPress={this.takePicture.bind(this)}
-        type={this.state.type}
-        flashMode={this.state.flash}
-        autoFocus={this.state.autoFocus}
-        autoFocusPointOfInterest={this.state.autoFocusPoint.normalized}
-        zoom={this.state.zoom}
-        whiteBalance={this.state.whiteBalance}
-        ratio={this.state.ratio}
-        focusDepth={this.state.depth}
-        permissionDialogTitle={'Permission to use camera'}
-        permissionDialogMessage={'We need your permission to use your camera phone'}
-        faceDetectionLandmarks={
-          RNCamera.Constants.FaceDetection.Landmarks
-            ? RNCamera.Constants.FaceDetection.Landmarks.all
-            : undefined
-        }
-        onFacesDetecized={canDetectText ? this.textRecognized : null}
-                            onGoogleVisited={canDetectFaces ? this.facesDetected : null}
-        onTextRecognized={canDetectText ? this.textRecognized : null}
-        onGoogleVisionBarcodesDetected={canDetectBarcode ? this.barcodeRecognized : null}
-      >
-
-        <View
-          style={{
-            flex: 0.5,
-            height: 72,
-            backgroundColor: 'transparent',
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-          }}
+        <RNCamera
+            ref={ref => {
+              this.camera = ref;
+            }}
+            style={{
+              flex: 1,
+              justifyContent: 'space-between',
+            }}
+            onPress={this.takePicture.bind(this)}
+            type={this.state.type}
+            flashMode={this.state.flash}
+            autoFocus={this.state.autoFocus}
+            autoFocusPointOfInterest={this.state.autoFocusPoint.normalized}
+            zoom={this.state.zoom}
+            whiteBalance={this.state.whiteBalance}
+            ratio={this.state.ratio}
+            focusDepth={this.state.depth}
+            permissionDialogTitle={'Permission to use camera'}
+            permissionDialogMessage={'We need your permission to use your camera phone'}
+            faceDetectionLandmarks={
+              RNCamera.Constants.FaceDetection.Landmarks
+                  ? RNCamera.Constants.FaceDetection.Landmarks.all
+                  : undefined
+            }
+            onFacesDetecized={canDetectText ? this.textRecognized : null}
+            onGoogleVisited={canDetectFaces ? this.facesDetected : null}
+            onTextRecognized={canDetectText ? this.textRecognized : null}
+            onGoogleVisionBarcodesDetected={canDetectBarcode
+                ? this.barcodeRecognized
+                : null}
         >
-        </View>
 
-        <View style={{ bottom: 0, left: (Dimensions.get('window').width - 60)}}>
+          <View
+              style={{
+                flex: 0.5,
+                height: 72,
+                backgroundColor: 'transparent',
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+              }}
+          >
+          </View>
+
+          <View
+              style={{bottom: 0, left: (Dimensions.get('window').width - 60)}}>
             <TouchableOpacity
-              style={{ position: 'absolute',
-                                  backgroundColor: '#54A8D1', //8B709A
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  height: 50,
-                                  width: 50,
-                                  borderRadius: 100, }}
-              onPress={this.zoomIn.bind(this)}
+                style={{
+                  position: 'absolute',
+                  backgroundColor: '#54A8D1', //8B709A
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: 50,
+                  width: 50,
+                  borderRadius: 100,
+                }}
+                onPress={this.zoomIn.bind(this)}
             >
               <Text style={styles.flipText}> + </Text>
             </TouchableOpacity>
-        </View>
+          </View>
 
-        <View style={{ bottom: 0, left: (Dimensions.get('window').width - 60)}}>
+          <View
+              style={{bottom: 0, left: (Dimensions.get('window').width - 60)}}>
             <TouchableOpacity
-              style={{ position: 'absolute',
-                                  backgroundColor: '#54A8D1', //8B709A
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  height: 50,
-                                  width: 50,
-                                  borderRadius: 100, }}
-              onPress={this.zoomOut.bind(this)}
+                style={{
+                  position: 'absolute',
+                  backgroundColor: '#54A8D1', //8B709A
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: 50,
+                  width: 50,
+                  borderRadius: 100,
+                }}
+                onPress={this.zoomOut.bind(this)}
             >
               <Text style={styles.flipText}> - </Text>
             </TouchableOpacity>
-        </View>
+          </View>
 
-        <View style={{ bottom: 50, alignItems: 'center', justifyContent: 'center', }}>
-                  <TouchableOpacity  onPress={this.takePicture.bind(this)}
-                    style={{ position: 'absolute',
-                    backgroundColor: '#431540', //8B709A
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: 70,
-                    width: 70,
-                    borderRadius: 140, }}>
-                      <Text style={{color: '#EFEFEF'}}>SNAP</Text>
-                  </TouchableOpacity>
-        </View>
-      </RNCamera>
+          <View style={{
+            bottom: 50,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <TouchableOpacity onPress={this.takePicture.bind(this)}
+                              style={{
+                                position: 'absolute',
+                                backgroundColor: '#431540', //8B709A
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                height: 70,
+                                width: 70,
+                                borderRadius: 140,
+                              }}>
+              <Text style={{color: '#EFEFEF'}}>SNAP</Text>
+            </TouchableOpacity>
+          </View>
+        </RNCamera>
     );
   }
 
@@ -359,11 +372,11 @@ const styles = StyleSheet.create({
   },
 });
 
-                  /*
-                        <TouchableOpacity
-                          style={[styles.flipButton, styles.picButton, { flex: 0.3, alignSelf: 'flex-end' }]}
-                          onPress={this.takePicture.bind(this)}
-                        >
-                          <Text style={styles.flipText}> SNAP </Text>
-                        </TouchableOpacity>
-                        */
+/*
+      <TouchableOpacity
+        style={[styles.flipButton, styles.picButton, { flex: 0.3, alignSelf: 'flex-end' }]}
+        onPress={this.takePicture.bind(this)}
+      >
+        <Text style={styles.flipText}> SNAP </Text>
+      </TouchableOpacity>
+      */

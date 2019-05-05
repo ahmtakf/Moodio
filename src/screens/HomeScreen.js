@@ -1,12 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import CookieManager from 'react-native-cookies';
+import Spotify from 'rn-spotify-sdk';
 
 class HomeScreen extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {accessToken: this.props.navigation.state.params.data.response.access_token};
+    this.state = {accessToken: Spotify.getSession().accessToken};
     this.handleLogout = this.handleLogout.bind(this);
     this.openCameraScreen = this.openCameraScreen.bind(this);
     this.openAudioScreen = this.openAudioScreen.bind(this);
@@ -14,7 +15,7 @@ class HomeScreen extends React.Component {
 
   componentDidMount() {
     this.setState(
-        {accessToken: this.props.navigation.state.params.data.response.access_token});
+        {accessToken: Spotify.getSession().accessToken});
     console.log(this.state.accessToken);
     fetch('https://api.spotify.com/v1/me', {
       method: 'GET',
