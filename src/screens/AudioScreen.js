@@ -4,13 +4,11 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
-  Dimensions,
   View,
 } from 'react-native';
 import Sound from 'react-native-sound';
 import {AudioRecorder, AudioUtils} from 'react-native-audio';
 import {speechToText} from '../api/GoogleAPI';
-import * as Progress from 'react-native-progress';
 
 class AudioScreen extends Component {
 
@@ -22,25 +20,17 @@ class AudioScreen extends Component {
     finished: false,
     audioPath: undefined,
     hasPermission: undefined,
-    recordText: '●',            // ● ■   ❚❚ | ▶ ♬
-    playText: '▶',              // ▶ ♬
-    progress: 1,
-    indeterminate: true,
   };
 
-  static _renderPlayButton(title, onPress, active){
-    return (
-      <TouchableHighlight style={[styles.button], {position: 'absolute', top: 95,}} onPress={onPress}>
-        <Text style={styles.buttonText}> {title} </Text>
-      </TouchableHighlight>
-    );
-  }
+  static _renderButton(title, onPress, active) {
+    const style = (active) ? styles.activeButtonText : styles.buttonText;
 
-  static _renderRecordButton(title, onPress, active){
     return (
-      <TouchableHighlight style={styles.record} onPress={onPress}>
-        <Text style={{fontSize: 80, color: 'red',}}> {title} </Text>
-      </TouchableHighlight>
+        <TouchableHighlight style={styles.button} onPress={onPress}>
+          <Text style={style}>
+            {title}
+          </Text>
+        </TouchableHighlight>
     );
   }
 
@@ -96,7 +86,38 @@ class AudioScreen extends Component {
     });
   }
 
+  _renderPauseButton(onPress, active) {
+    const style = (active) ? styles.activeButtonText : styles.buttonText;
+    const title = this.state.paused ? 'RESUME' : 'PAUSE';
+    return (
+        <TouchableHighlight style={styles.button} onPress={onPress}>
+          <Text style={style}>
+            {title}
+          </Text>
+        </TouchableHighlight>
+    );
+  }
+
+  async _pause() {
+    if (!this.state.recording) {
+      console.warn('Can\'t pause, not recording!');
+      return;
+    }
+
+    try {
+      await AudioRecorder.pauseRecording();
+      this.setState({paused: true});
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   async _resume() {
+    if (!this.state.paused) {
+      console.warn('Can\'t resume, not paused!');
+      return;
+    }
+
     try {
       await AudioRecorder.resumeRecording();
       this.setState({paused: false});
@@ -104,10 +125,8 @@ class AudioScreen extends Component {
       console.error(error);
     }
   }
-// ● ■
-  async _stop() {
-    this.setState({ recordText: '●'});
 
+  async _stop() {
     if (!this.state.recording) {
       console.warn('Can\'t stop, not recording!');
       return;
@@ -128,8 +147,6 @@ class AudioScreen extends Component {
   }
 
   async _play() {
-    this.setState({ playText: '♬'});
-
     if (this.state.recording) {
       await this._stop();
     }
@@ -146,21 +163,16 @@ class AudioScreen extends Component {
       setTimeout(() => {
         sound.play((success) => {
           if (success) {
-            sc = true;
             console.log('successfully finished playing');
-            this.setState({ playText: '▶'});
           } else {
             console.log('playback failed due to audio decoding errors');
           }
         });
       }, 100);
     }, 100);
-
   }
-// ● ■
-  async _record() {
-    this.setState({ recordText: '■'});
 
+  async _record() {
     if (this.state.recording) {
       console.warn('Already recording!');
       return;
@@ -191,78 +203,39 @@ class AudioScreen extends Component {
         0} bytes`);
   }
 
-// ● ■   ❚❚ | ▶ ♬
+  render() {
 
-/*
-     componentDidMount() {
-        this.animate();
-      }
-
-      animate() {
-        let duration = this.state.currentTime;
-        console.warn('duration-->', this.state.currentTime);
-        let progress = 1;
-        this.setState({ progress });
-        setTimeout(() => {
-          this.setState({ indeterminate: false });
-          setInterval(() => {
-            //progress -= ( 1 / duration) ;
-            if (progress < 0)
-              progress = 0;
-            this.setState({ progress });
-          }, 500);
-        }, 1500);
-      }
-*/
-
-render() {
-  return (
-    < View style = {styles.container}>
-      <View style = {styles.circle}>
-        <Progress.Circle style = {{alignItems: 'center',}}
-                        size = {250}
-                        //marginTop = {75}
-                        thickness = {18}
-                        color = {'#431540'}
-                        //progress={1}
-                        progress = {this.state.progress}
-                        indeterminate = {false}
-                        direction = "counter-clockwise" >
-          {AudioScreen._renderPlayButton(this.state.playText, () => { this._play(); })}
-
-        </Progress.Circle >
-      </View>
-
-      {AudioScreen._renderRecordButton(this.state.recordText, () => {
-        if (this.state.recordText == '●') {
-          {
-            this._record();
-          }
-        } else if (this.state.recordText == '■') {
-          {
-            this._stop();
-          }
-        }
-      }, this.state.recording)}
-    </View>
-
-  );
+    return (
+        <View style={styles.container}>
+          <View style={styles.controls}>
+            {AudioScreen._renderButton('RECORD', () => {this._record();},
+                this.state.recording)}
+            {AudioScreen._renderButton('PLAY', () => {this._play();})}
+            {AudioScreen._renderButton('STOP', () => {this._stop();})}
+            {/* {this._renderButton("PAUSE", () => {this._pause()} )} */}
+            {this._renderPauseButton(
+                () => {this.state.paused ? this._resume() : this._pause();})}
+            <Text style={styles.progressText}>{this.state.currentTime}s</Text>
+          </View>
+        </View>
+    );
+  }
 }
-}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EFEFEF',
+    backgroundColor: '#431540',
   },
   controls: {
     justifyContent: 'center',
     alignItems: 'center',
-    //flex: 1,
+    flex: 1,
   },
   progressText: {
     paddingTop: 50,
     fontSize: 50,
-    color: '#431540',
+    color: '#EFEFEF',
   },
   button: {
     padding: 20,
@@ -271,24 +244,14 @@ const styles = StyleSheet.create({
     color: '#eee',
   },
   buttonText: {
-    fontSize: 50,
-    color: '#431540',
+    fontSize: 20,
+    color: '#EFEFEF',
   },
   activeButtonText: {
     fontSize: 20,
     color: '#B81F00',
   },
-  circle: {
-    top: 75,
-  },
-  record:{
-    position: 'absolute',
-    bottom: 0,
-    left: Dimensions.get('window').width / 2 - 45,
-  }
 
 });
 
 export default AudioScreen;
-
- /*<Text style = {styles.progressText}> {this.state.currentTime} s </Text>*/
