@@ -27,7 +27,9 @@ class HomeScreen extends React.Component {
 
     this.props.navigation.navigate('LoginScreen');
     CookieManager.clearAll();
-
+    console.log("Logout");
+    Spotify.logout();
+    console.log("logout finish");
     event.preventDefault();
   }
 
