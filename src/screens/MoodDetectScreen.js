@@ -29,17 +29,20 @@ class MoodDetect extends React.Component {
       Alert.alert("Error", error.message);
     });
 
-    Spotify.sendRequest('v1/me/top/artists', 'GET', {limit:5},
+    Spotify.sendRequest('v1/me/top/artists', 'GET', {limit:50},
     false).then((responseJson) => {
       console.log(responseJson);
       this.setState({topArtists: responseJson.items.map(item => item.name)});
 
       let artistIDs = responseJson.items.map(item => item.id);
       let artists = "";
-      artistIDs.forEach(function(element) {
-        console.log(element);
-        artists = artists + element + ",";
-      });
+
+      for (let step = 0, step2 = 0; step < 5 && step2 < 50; step2++) {
+        if (Math.round(Math.random())) {
+          artists = artists + artistIDs[step2] + ",";
+          step++;
+        }
+      }
       console.log(artists);
 
       let anger = parseFloat(this.state.mood[0].faceAttributes.emotion.anger);
