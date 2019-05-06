@@ -1,4 +1,4 @@
-package com.moodio;
+package com.cs492.moodio;
 
 import com.facebook.react.ReactActivity;
 

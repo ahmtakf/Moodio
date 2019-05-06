@@ -102,7 +102,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.moodio"
+        applicationId "com.cs492.moodio"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

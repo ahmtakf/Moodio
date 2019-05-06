@@ -19,7 +19,7 @@ class HomeScreen extends React.Component {
     this.state = {
       currentSession: Spotify.getSession(),
       username: 'USER',
-      images: [{url: 'https://emgroupuk.com/wp-content/uploads/2018/06/profile-icon-9.png'}],
+      //images: [{url: 'https://emgroupuk.com/wp-content/uploads/2018/06/profile-icon-9.png'}],
     };
     this.handleLogout = this.handleLogout.bind(this);
     this.openCameraScreen = this.openCameraScreen.bind(this);
@@ -95,7 +95,7 @@ class HomeScreen extends React.Component {
                 top: 5,
                 borderRadius: 60 / 2,
               }}
-              source={{uri: this.state.images[0].url}}
+              //source={{uri: this.state.images[0].url}}
           />
           <Text style={styles.text1}> {this.state.username}</Text>
         </View>

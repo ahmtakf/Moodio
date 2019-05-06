@@ -33,15 +33,28 @@ class LoginScreen extends React.Component {
     if (!await Spotify.isInitializedAsync()) {
       // initialize spotify
       const spotifyOptions = {
-        'clientID': 'c4ed4e112a58428b9e4bab08f4fefd8c',
+        'clientID': '61f762caced94f5a9c285016ff284b44',
         'sessionUserDefaultsKey': '7865065897654383bac631a451d42900',
         'redirectURL': 'https://thawing-ravine-99621.herokuapp.com/callback/',
         'scopes': [
           'user-read-private',
           'user-read-email',
-          'user-top-read'],
+          'user-top-read',
+          'playlist-modify-public',
+          'playlist-modify-private',
+          'user-library-modify',
+          'user-library-read',
+          'playlist-read-private'],
+        'tokenSwapURL': 'https://glacial-waters-68334.herokuapp.com/api/token',
+        'tokenRefreshURL': 'https://glacial-waters-68334.herokuapp.com/api/refresh_token'
       };
       const loggedIn = await Spotify.initialize(spotifyOptions);
+
+      const session = await Spotify.getSessionAsync();
+      if (session && session.expireTime - Date.now() < 0) {
+        await Spotify.renewSession();
+      }
+
       // update UI state
       this.setState({
         spotifyInitialized: true,
