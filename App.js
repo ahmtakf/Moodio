@@ -10,14 +10,12 @@ import React, {Component} from 'react';
 import {StyleSheet} from 'react-native';
 import LoginScreen from './src/screens/LoginScreen';
 import {createAppContainer, createStackNavigator} from 'react-navigation';
-import MoodDetect from './src/screens/MoodDetectScreen';
 import BottomTab from './src/BottomTab';
 import RecordDetect from './src/screens/RecordDetectScreen';
 
 const RootStack = createStackNavigator(
     {
       LoginScreen: LoginScreen,
-      MoodDetectScreen: MoodDetect,
       RecordDetectScreen: RecordDetect,
       Tabs: BottomTab,
     },

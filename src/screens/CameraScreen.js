@@ -11,6 +11,8 @@ import {
 // eslint-disable-next-line import/no-unresolved
 import {RNCamera} from 'react-native-camera';
 
+import {playlistFromImage} from '../MoodDetect';
+
 const azureFaceAPI = 'https://westeurope.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false&returnFaceAttributes=age,gender,smile,emotion,hair';
 
 const flashModeOrder = {
@@ -53,22 +55,6 @@ export default class CameraScreen extends React.Component {
   constructor(props) {
     super(props);
   }
-
-  //Burayı telefondan uygulamaya giremediğim için yazdım test data olarak. Emülatorde de foto çekmeden test ettim.
- /* componentDidMount(){
-    this.props.navigation.navigate('MoodDetectScreen',
-    {data: {img: 'https://emgroupuk.com/wp-content/uploads/2018/06/profile-icon-9.png',
-     mood: [{FaceAttributes:{emotion: {
-      anger: 0,
-      contempt: 0,
-      disgust: 0,
-      fear: 0,
-      happiness: 0.999,
-      neutral: 0.001,
-      sadness: 0,
-      surprise: 0
-    }}}]}});
-  }*/
 
   toggleFacing() {
     this.setState({
@@ -153,8 +139,7 @@ export default class CameraScreen extends React.Component {
       // Or simply wrap the file path with RNFetchBlob.wrap().
     }, data.base64).then((res) => {
       console.warn('AZURE SONUCU --> ', res.json());
-      this.props.navigation.navigate('MoodDetectScreen',
-          {data: {img: data.uri, mood: res.json()}});
+      playlistFromImage(res.json());
     }).catch((err) => {
       // error handling ..
       console.log(err);

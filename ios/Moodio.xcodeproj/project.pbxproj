@@ -45,6 +45,7 @@
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2E71E8A5467E4035A839D5BF /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C137D59C4247D6BCCA5D62 /* libRNVectorIcons.a */; };
 		320AFAB4841B4B559F209376 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC12BE52E3BE441997F25E72 /* SimpleLineIcons.ttf */; };
+		35E46F9754C44C1BBA87F138 /* libRNAudioRecord.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC5184F1C94B406D85183DBB /* libRNAudioRecord.a */; };
 		4027BBADAC3E489B919FE48E /* libRNSpotify.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A9C11C68CF654D71B291AE71 /* libRNSpotify.a */; };
 		5696E3AB50CC4A78B6A3CC5F /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 908E2E0829AC4B0E926A4FFE /* FontAwesome5_Regular.ttf */; };
 		59855865D3D643A0A12AFD67 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B6C9133DF55345EB8A8BEA23 /* MaterialCommunityIcons.ttf */; };
@@ -61,6 +62,7 @@
 		B240BC85C0A14B8E885F179A /* libRNEventEmitter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 944DBE9ED7294862A88978B1 /* libRNEventEmitter.a */; };
 		C000368A102F444CA2A81A27 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34E529FB1E574B128B7CBEE4 /* Foundation.ttf */; };
 		C3C6C910704B4865B8750FC1 /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ABD2DAE77E146F29238DC3F /* libRNGestureHandler-tvOS.a */; };
+		C4BAFAD5011D44688EC8B395 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4A8BE82472A43C0B0E66E9B /* libReactNativePermissions.a */; };
 		C7823BD20FA149619BC7E327 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33C4FE658CEE4701A28442A3 /* EvilIcons.ttf */; };
 		D54E4CC6D7E54A23B6A26E64 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BFD1BE1956584FFCB90AF3B0 /* AntDesign.ttf */; };
 		DF289A0CB13644B893CA919A /* libRNCookieManagerIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A58C320638B84758910D1B56 /* libRNCookieManagerIOS.a */; };
@@ -135,6 +137,20 @@
 			proxyType = 2;
 			remoteGlobalIDString = 83CBBA2E1A601D0E00E9B192;
 			remoteInfo = React;
+		};
+		1A02F1482288796200A22072 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D9B9B68D532448E1AEB1FF18 /* RNAudioRecord.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNAudioRecord;
+		};
+		1A02F1972288798800A22072 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 60524C8465E14855B540852A /* ReactNativePermissions.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9D23B34F1C767B80008B4819;
+			remoteInfo = ReactNativePermissions;
 		};
 		1A6CE3DA22627EC600A561C6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -474,6 +490,7 @@
 		4BEBE5F073964CA4A461C774 /* RNAudio.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAudio.xcodeproj; path = "../node_modules/react-native-audio/ios/RNAudio.xcodeproj"; sourceTree = "<group>"; };
 		5416708EFF634217A0DAC4C5 /* RNFS.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFS.xcodeproj; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
+		60524C8465E14855B540852A /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativePermissions.xcodeproj; path = "../node_modules/react-native-permissions/ios/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; };
 		6341B095B86347DD87D22200 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		66AB31ED7DDE41A8B24C8778 /* RNSpotify.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSpotify.xcodeproj; path = "../node_modules/rn-spotify-sdk/ios/RNSpotify.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
@@ -501,9 +518,12 @@
 		CF6BA3B86826462090539382 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
 		D718BE23BF354178959555B3 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		D721148B49C64F909AF6161A /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
+		D9B9B68D532448E1AEB1FF18 /* RNAudioRecord.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAudioRecord.xcodeproj; path = "../node_modules/react-native-audio-record/ios/RNAudioRecord.xcodeproj"; sourceTree = "<group>"; };
 		E0C05814E00B4C07B33AD372 /* libRNFetchBlob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFetchBlob.a; sourceTree = "<group>"; };
+		E4A8BE82472A43C0B0E66E9B /* libReactNativePermissions.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativePermissions.a; sourceTree = "<group>"; };
 		E58DDA1E2F4F41E3B8CB4349 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		E781DBEB8C4F4C108F78EB49 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
+		EC5184F1C94B406D85183DBB /* libRNAudioRecord.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAudioRecord.a; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F1C6D6DF061741F796F24685 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
@@ -549,6 +569,8 @@
 				B240BC85C0A14B8E885F179A /* libRNEventEmitter.a in Frameworks */,
 				4027BBADAC3E489B919FE48E /* libRNSpotify.a in Frameworks */,
 				AE627F504D6C449796A2409F /* libRNFetchBlob.a in Frameworks */,
+				35E46F9754C44C1BBA87F138 /* libRNAudioRecord.a in Frameworks */,
+				C4BAFAD5011D44688EC8B395 /* libReactNativePermissions.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,6 +741,22 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		1A02F1452288796200A22072 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A02F1492288796200A22072 /* libRNAudioRecord.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A02F1942288798700A22072 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A02F1982288798800A22072 /* libReactNativePermissions.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		1A6CE3B422627EC400A561C6 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -734,6 +772,8 @@
 				944DBE9ED7294862A88978B1 /* libRNEventEmitter.a */,
 				A9C11C68CF654D71B291AE71 /* libRNSpotify.a */,
 				E0C05814E00B4C07B33AD372 /* libRNFetchBlob.a */,
+				EC5184F1C94B406D85183DBB /* libRNAudioRecord.a */,
+				E4A8BE82472A43C0B0E66E9B /* libReactNativePermissions.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -877,6 +917,8 @@
 				9C18638F268645A5A4199BDC /* RNEventEmitter.xcodeproj */,
 				66AB31ED7DDE41A8B24C8778 /* RNSpotify.xcodeproj */,
 				4220C923AF334324AEA581E8 /* RNFetchBlob.xcodeproj */,
+				D9B9B68D532448E1AEB1FF18 /* RNAudioRecord.xcodeproj */,
+				60524C8465E14855B540852A /* ReactNativePermissions.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1093,8 +1135,16 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+					ProductGroup = 1A02F1942288798700A22072 /* Products */;
+					ProjectRef = 60524C8465E14855B540852A /* ReactNativePermissions.xcodeproj */;
+				},
+				{
 					ProductGroup = 1A6CE3E222627EC900A561C6 /* Products */;
 					ProjectRef = 4BEBE5F073964CA4A461C774 /* RNAudio.xcodeproj */;
+				},
+				{
+					ProductGroup = 1A02F1452288796200A22072 /* Products */;
+					ProjectRef = D9B9B68D532448E1AEB1FF18 /* RNAudioRecord.xcodeproj */;
 				},
 				{
 					ProductGroup = 1A6CE3EC22627ECA00A561C6 /* Products */;
@@ -1198,6 +1248,20 @@
 			fileType = archive.ar;
 			path = libReact.a;
 			remoteRef = 146834031AC3E56700842450 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1A02F1492288796200A22072 /* libRNAudioRecord.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNAudioRecord.a;
+			remoteRef = 1A02F1482288796200A22072 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1A02F1982288798800A22072 /* libReactNativePermissions.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libReactNativePermissions.a;
+			remoteRef = 1A02F1972288798800A22072 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		1A6CE3DB22627EC600A561C6 /* libjsi.a */ = {
@@ -1661,12 +1725,16 @@
 					"$(SRCROOT)/../node_modules/react-native-events/ios",
 					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/**",
 					"$(SRCROOT)/../node_modules/rn-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-audio-record/ios",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 				);
 				INFOPLIST_FILE = MoodioTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1698,12 +1766,16 @@
 					"$(SRCROOT)/../node_modules/react-native-events/ios",
 					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/**",
 					"$(SRCROOT)/../node_modules/rn-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-audio-record/ios",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 				);
 				INFOPLIST_FILE = MoodioTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1744,6 +1816,8 @@
 					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/**",
 					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/external/SpotifySDK",
 					"$(SRCROOT)/../node_modules/rn-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-audio-record/ios",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 				);
 				INFOPLIST_FILE = Moodio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1785,6 +1859,8 @@
 					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/**",
 					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/external/SpotifySDK",
 					"$(SRCROOT)/../node_modules/rn-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-audio-record/ios",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 				);
 				INFOPLIST_FILE = Moodio/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1825,11 +1901,15 @@
 					"$(SRCROOT)/../node_modules/react-native-events/ios",
 					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/**",
 					"$(SRCROOT)/../node_modules/rn-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-audio-record/ios",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 				);
 				INFOPLIST_FILE = "Moodio-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1870,11 +1950,15 @@
 					"$(SRCROOT)/../node_modules/react-native-events/ios",
 					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/**",
 					"$(SRCROOT)/../node_modules/rn-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-audio-record/ios",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 				);
 				INFOPLIST_FILE = "Moodio-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1914,11 +1998,15 @@
 					"$(SRCROOT)/../node_modules/react-native-events/ios",
 					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/**",
 					"$(SRCROOT)/../node_modules/rn-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-audio-record/ios",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 				);
 				INFOPLIST_FILE = "Moodio-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1958,11 +2046,15 @@
 					"$(SRCROOT)/../node_modules/react-native-events/ios",
 					"$(SRCROOT)/../node_modules/rn-spotify-sdk/ios/**",
 					"$(SRCROOT)/../node_modules/rn-fetch-blob/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-audio-record/ios",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 				);
 				INFOPLIST_FILE = "Moodio-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (

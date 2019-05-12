@@ -1,221 +1,148 @@
 import React, {Component} from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View,
-} from 'react-native';
+import {Button, StyleSheet, View} from 'react-native';
+import {Buffer} from 'buffer';
+import Permissions from 'react-native-permissions';
 import Sound from 'react-native-sound';
-import {AudioRecorder, AudioUtils} from 'react-native-audio';
-import {speechToText} from '../api/GoogleAPI';
+import AudioRecord from 'react-native-audio-record';
 
-class AudioScreen extends Component {
+import {playlistFromAudio} from '../MoodDetect';
 
+export default class App extends Component {
+  sound = null;
   state = {
-    currentTime: 0.0,
+    audioFile: '',
     recording: false,
-    paused: false,
-    stoppedRecording: false,
-    finished: false,
-    audioPath: undefined,
-    hasPermission: undefined,
+    loaded: false,
+    paused: true,
   };
 
-  static _renderButton(title, onPress, active) {
-    const style = (active) ? styles.activeButtonText : styles.buttonText;
+  async componentDidMount() {
+    await this.checkPermission();
 
-    return (
-        <TouchableHighlight style={styles.button} onPress={onPress}>
-          <Text style={style}>
-            {title}
-          </Text>
-        </TouchableHighlight>
-    );
-  }
+    const options = {
+      sampleRate: 160000,
+      channels: 1,
+      bitsPerSample: 16,
+      wavFile: 'test.wav',
+    };
 
-  prepareRecordingPath() {
-    let audioPath;
-    if (Platform.OS === 'ios') {
-      audioPath = AudioUtils.DocumentDirectoryPath + '/test.wav';
-      AudioRecorder.prepareRecordingAtPath(audioPath, {
-        SampleRate: 16000,
-        Channels: 1,
-        AudioQuality: 'Low',
-        AudioEncoding: 'lpcm',
-        IncludeBase64: true,
-      });
-    } else {
-      audioPath = AudioUtils.DocumentDirectoryPath + '/test.3gp';
-      AudioRecorder.prepareRecordingAtPath(audioPath, {
-        SampleRate: 16000,
-        Channels: 1,
-        AudioQuality: 'Low',
-        AudioEncoding: 'amr_wb',
-        IncludeBase64: true,
-      });
-    }
-    this.state.audioPath = audioPath;
-  }
+    AudioRecord.init(options);
 
-  componentDidMount() {
-    AudioRecorder.requestAuthorization().then((isAuthorised) => {
-      this.setState({hasPermission: isAuthorised});
-
-      if (!isAuthorised) return;
-
-      this.prepareRecordingPath();
-
-      AudioRecorder.onProgress = (data) => {
-        this.setState({currentTime: Math.floor(data.currentTime)});
-      };
-
-      AudioRecorder.onFinished = (data) => {
-        // Android callback comes in the form of a promise instead.
-        if (Platform.OS === 'ios') {
-          this._finishRecording(data.status === 'OK', data['audioFileURL'],
-              data['audioFileSize']);
-        }
-
-        const query = data.base64.replace(/(\r\n|\n|\r)/gm, '');
-        speechToText(query).then((res) => {
-          this.props.navigation.navigate('RecordDetectScreen',
-              {data: {res: res}});
-        });
-      };
+    AudioRecord.on('data', data => {
+      const chunk = Buffer.from(data, 'base64');
+      console.log('chunk size', chunk.byteLength);
+      // do something with audio chunk
     });
   }
 
-  _renderPauseButton(onPress, active) {
-    const style = (active) ? styles.activeButtonText : styles.buttonText;
-    const title = this.state.paused ? 'RESUME' : 'PAUSE';
-    return (
-        <TouchableHighlight style={styles.button} onPress={onPress}>
-          <Text style={style}>
-            {title}
-          </Text>
-        </TouchableHighlight>
-    );
-  }
+  checkPermission = async () => {
+    const p = await Permissions.check('microphone');
+    console.log('permission check', p);
+    if (p === 'authorized') return;
+    return this.requestPermission();
+  };
 
-  async _pause() {
-    if (!this.state.recording) {
-      console.warn('Can\'t pause, not recording!');
-      return;
-    }
+  requestPermission = async () => {
+    const p = await Permissions.request('microphone');
+    console.log('permission request', p);
+  };
 
-    try {
-      await AudioRecorder.pauseRecording();
-      this.setState({paused: true});
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  start = async () => {
+    console.log('start record');
+    this.setState({audioFile: '', recording: true, loaded: false});
+    AudioRecord.start();
+    setTimeout(() => this.stop(), 30000);
+  };
 
-  async _resume() {
-    if (!this.state.paused) {
-      console.warn('Can\'t resume, not paused!');
-      return;
-    }
+  stop = async () => {
+    if (!this.state.recording) return;
+    console.log('stop record');
+    let audioFile = await AudioRecord.stop();
+    console.log('audioFile', audioFile);
+    this.setState({audioFile, recording: false});
 
-    try {
-      await AudioRecorder.resumeRecording();
-      this.setState({paused: false});
-    } catch (error) {
-      console.error(error);
-    }
-  }
+    const file = {
+      uri: audioFile,
+      type: 'audio/wave',
+      name: 'test.wav',
+    };
 
-  async _stop() {
-    if (!this.state.recording) {
-      console.warn('Can\'t stop, not recording!');
-      return;
-    }
+    const body = new FormData();
+    body.append('file', file);
 
-    this.setState({stoppedRecording: true, recording: false, paused: false});
+    fetch('https://fathomless-ocean-63613.herokuapp.com/audio', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      body: body,
+    }).then((response) => response.json()).then((responseJson) => {
+      console.log('Success: detecting mood from audio');
+      console.log(responseJson);
+      playlistFromAudio(responseJson);
+    }).catch(() => {
+      console.log('Error: detecting mood from audio');
+    });
+  };
 
-    try {
-      const filePath = await AudioRecorder.stopRecording();
-
-      if (Platform.OS === 'android') {
-        this._finishRecording(true, filePath);
+  load = () => {
+    return new Promise((resolve, reject) => {
+      if (!this.state.audioFile) {
+        return reject('file path is empty');
       }
-      return filePath;
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
-  async _play() {
-    if (this.state.recording) {
-      await this._stop();
-    }
-
-    // These timeouts are a hacky workaround for some issues with react-native-sound.
-    // See https://github.com/zmxv/react-native-sound/issues/89.
-    setTimeout(() => {
-      const sound = new Sound(this.state.audioPath, '', (error) => {
+      this.sound = new Sound(this.state.audioFile, '', error => {
         if (error) {
-          console.log('failed to load the sound', error);
+          console.log('failed to load the file', error);
+          return reject(error);
         }
+        this.setState({loaded: true});
+        return resolve();
       });
+    });
+  };
 
-      setTimeout(() => {
-        sound.play((success) => {
-          if (success) {
-            console.log('successfully finished playing');
-          } else {
-            console.log('playback failed due to audio decoding errors');
-          }
-        });
-      }, 100);
-    }, 100);
-  }
-
-  async _record() {
-    if (this.state.recording) {
-      console.warn('Already recording!');
-      return;
+  play = async () => {
+    if (!this.state.loaded) {
+      try {
+        await this.load();
+      } catch (error) {
+        console.log(error);
+      }
     }
 
-    if (!this.state.hasPermission) {
-      console.warn('Can\'t record, no permission granted!');
-      return;
-    }
+    this.setState({paused: false});
+    Sound.setCategory('Playback');
 
-    if (this.state.stoppedRecording) {
-      this.prepareRecordingPath(this.state.audioPath);
-    }
+    this.sound.play(success => {
+      if (success) {
+        console.log('successfully finished playing');
+      } else {
+        console.log('playback failed due to audio decoding errors');
+      }
+      this.setState({paused: true});
+      // this.sound.release();
+    });
+  };
 
-    this.setState({recording: true, paused: false});
-
-    try {
-      await AudioRecorder.startRecording();
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  _finishRecording(didSucceed, filePath, fileSize) {
-    this.setState({finished: didSucceed});
-    console.log(
-        `Finished recording of duration ${this.state.currentTime} seconds at path: ${filePath} and size of ${fileSize ||
-        0} bytes`);
-  }
+  pause = () => {
+    this.sound.pause();
+    this.setState({paused: true});
+  };
 
   render() {
-
+    const {recording, paused, audioFile} = this.state;
     return (
         <View style={styles.container}>
-          <View style={styles.controls}>
-            {AudioScreen._renderButton('RECORD', () => {this._record();},
-                this.state.recording)}
-            {AudioScreen._renderButton('PLAY', () => {this._play();})}
-            {AudioScreen._renderButton('STOP', () => {this._stop();})}
-            {/* {this._renderButton("PAUSE", () => {this._pause()} )} */}
-            {this._renderPauseButton(
-                () => {this.state.paused ? this._resume() : this._pause();})}
-            <Text style={styles.progressText}>{this.state.currentTime}s</Text>
+          <View style={styles.row}>
+            <Button onPress={this.start} title="Record" disabled={recording}/>
+            <Button onPress={this.stop} title="Stop" disabled={!recording}/>
+            {paused ? (
+                <Button onPress={this.play} title="Play" disabled={!audioFile}/>
+            ) : (
+                <Button onPress={this.pause} title="Pause"
+                        disabled={!audioFile}/>
+            )}
           </View>
         </View>
     );
@@ -225,33 +152,10 @@ class AudioScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#431540',
-  },
-  controls: {
     justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
   },
-  progressText: {
-    paddingTop: 50,
-    fontSize: 50,
-    color: '#EFEFEF',
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
   },
-  button: {
-    padding: 20,
-  },
-  disabledButtonText: {
-    color: '#eee',
-  },
-  buttonText: {
-    fontSize: 20,
-    color: '#EFEFEF',
-  },
-  activeButtonText: {
-    fontSize: 20,
-    color: '#B81F00',
-  },
-
 });
-
-export default AudioScreen;
