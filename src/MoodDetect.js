@@ -117,13 +117,13 @@ function SpotifyCreatePlaylist(uris, currentMood) {
       }, true).then(() => {
         Linking.openURL('https://open.spotify.com/playlist/' + playlist.id);
       }).catch((error) => {
-        Alert.alert('Error', error.message);
+        Alert.alert('Error1', error.message);
       });
     }).catch((error) => {
-      Alert.alert('Error', error.message);
+      Alert.alert('Error2', error.message);
     });
   }).catch((error) => {
-    Alert.alert('Error', error.message);
+    Alert.alert('Error3', error.message);
   });
 }
 
