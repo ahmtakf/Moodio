@@ -12,6 +12,7 @@ import LoginScreen from './src/screens/LoginScreen';
 import {createAppContainer, createStackNavigator} from 'react-navigation';
 import BottomTab from './src/BottomTab';
 import RecordDetect from './src/screens/RecordDetectScreen';
+import TestFairy from 'react-native-testfairy';
 
 const RootStack = createStackNavigator(
     {
@@ -28,6 +29,10 @@ const AppContainer = createAppContainer(RootStack);
 
 type Props = {};
 export default class App extends Component<Props> {
+
+  componentWillMount() {
+    TestFairy.begin("SDK-e9tNfRu4");
+  }
   render() {
     return (
         <AppContainer style={styles.container}>

@@ -3,6 +3,7 @@ package com.cs492.moodio;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.testfairy.react.TestFairyPackage;
 import com.goodatlas.audiorecord.RNAudioRecordPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.lufinkey.react.spotify.RNSpotifyPackage;
@@ -34,6 +35,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new TestFairyPackage(),
             new RNAudioRecordPackage(),
             new RNFetchBlobPackage(),
             new RNSpotifyPackage(),
