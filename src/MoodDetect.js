@@ -2,7 +2,7 @@ import {Alert, Linking} from 'react-native';
 import Spotify from 'rn-spotify-sdk';
 import moment from 'moment/moment';
 
-export const playlistFromImage = (data) => {
+export const playlistFromImage = async (data) => {
 
   let moods = data[0].faceAttributes.emotion;
   moods = Object.assign({},
@@ -40,7 +40,7 @@ export const playlistFromImage = (data) => {
   SpotifyGetPlaylist(energy, valence, currentMood);
 };
 
-export const playlistFromAudio = (data) => {
+export const playlistFromAudio = async (data) => {
   const moods = Object.assign({},
       ...Object.keys(data).map(k => ({[k]: parseFloat(data[k])})));
   const arr = Object.values(moods);

@@ -2,6 +2,7 @@
 import RNFetchBlob from 'rn-fetch-blob';
 import React from 'react';
 import {
+  ActivityIndicator,
   Dimensions,
   StyleSheet,
   Text,
@@ -50,6 +51,7 @@ export default class CameraScreen extends React.Component {
     type: 'front',
     whiteBalance: 'auto',
     ratio: '16:9',
+    loading: false,
   };
 
   constructor(props) {
@@ -132,6 +134,8 @@ export default class CameraScreen extends React.Component {
     console.warn('4', RNFetchBlob.wrap(data.uri));
     const picPath = data.uri;*/
 
+
+    this.setState({loading: true});
     RNFetchBlob.fetch('POST', azureFaceAPI, {
       'Content-Type': 'application/octet-stream',
       'Ocp-Apim-Subscription-Key': '6163804f762148a3b9f67b09a6b95e8e',
@@ -139,11 +143,13 @@ export default class CameraScreen extends React.Component {
       // Or simply wrap the file path with RNFetchBlob.wrap().
     }, data.base64).then((res) => {
       console.warn('AZURE SONUCU --> ', res.json());
-      playlistFromImage(res.json());
+      playlistFromImage(res.json()).then(() => this.setState({loading: false}));
     }).catch((err) => {
       // error handling ..
       console.log(err);
+      this.setState({loading: false});
     });
+
 
     //this.props.navigation.navigate('MoodDetectScreen', data: {img: data.uri, mood: res.json()}});
 
@@ -306,7 +312,18 @@ export default class CameraScreen extends React.Component {
   }
 
   render() {
-    return <View style={styles.container}>{this.renderCamera()}</View>;
+    if (this.state.loading) {
+      return <View style={styles.container}>
+        <ActivityIndicator animating={true} style={styles.loadIndicator}>
+        </ActivityIndicator>
+        <Text style={styles.loadMessage}>
+          Loading...
+        </Text>
+      </View>
+    } else {
+      return <View style={styles.container}>{this.renderCamera()}</View>;
+    }
+
   }
 }
 

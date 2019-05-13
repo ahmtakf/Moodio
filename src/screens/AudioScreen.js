@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, StyleSheet, View} from 'react-native';
+import {ActivityIndicator, Button, StyleSheet, Text, View} from 'react-native';
 import {Buffer} from 'buffer';
 import Permissions from 'react-native-permissions';
 import Sound from 'react-native-sound';
@@ -14,6 +14,7 @@ export default class App extends Component {
     recording: false,
     loaded: false,
     paused: true,
+    loading: false,
   };
 
   async componentDidMount() {
@@ -70,6 +71,7 @@ export default class App extends Component {
     const body = new FormData();
     body.append('file', file);
 
+    this.setState({loading: true});
     fetch('https://fathomless-ocean-63613.herokuapp.com/audio', {
       method: 'POST',
       headers: {
@@ -79,9 +81,10 @@ export default class App extends Component {
     }).then((response) => response.json()).then((responseJson) => {
       console.log('Success: detecting mood from audio');
       console.log(responseJson);
-      playlistFromAudio(responseJson);
+      playlistFromAudio(responseJson).then(() => this.setState({loading: false}));
     }).catch(() => {
       console.log('Error: detecting mood from audio');
+      this.setState({loading: false});
     });
   };
 
@@ -132,20 +135,30 @@ export default class App extends Component {
 
   render() {
     const {recording, paused, audioFile} = this.state;
-    return (
-        <View style={styles.container}>
-          <View style={styles.row}>
-            <Button onPress={this.start} title="Record" disabled={recording}/>
-            <Button onPress={this.stop} title="Stop" disabled={!recording}/>
-            {paused ? (
-                <Button onPress={this.play} title="Play" disabled={!audioFile}/>
-            ) : (
-                <Button onPress={this.pause} title="Pause"
-                        disabled={!audioFile}/>
-            )}
+    if (this.state.loading) {
+      return <View style={styles.container}>
+        <ActivityIndicator animating={true} style={styles.loadIndicator}>
+        </ActivityIndicator>
+        <Text style={styles.loadMessage}>
+          Loading...
+        </Text>
+      </View>
+    } else {
+      return (
+          <View style={styles.container}>
+            <View style={styles.row}>
+              <Button onPress={this.start} title="Record" disabled={recording}/>
+              <Button onPress={this.stop} title="Stop" disabled={!recording}/>
+              {paused ? (
+                  <Button onPress={this.play} title="Play" disabled={!audioFile}/>
+              ) : (
+                  <Button onPress={this.pause} title="Pause"
+                          disabled={!audioFile}/>
+              )}
+            </View>
           </View>
-        </View>
-    );
+      );
+    }
   }
 }
 
